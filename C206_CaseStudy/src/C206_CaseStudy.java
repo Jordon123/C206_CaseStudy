@@ -13,6 +13,7 @@ public class C206_CaseStudy {
 		// Creating Array for Stalls
 		C206_CaseStudy csa = new C206_CaseStudy();
 		csa.start();
+		
 	}
 	public void start() {
 		ArrayList<Stall> stallArr = new ArrayList<Stall>();
@@ -161,13 +162,12 @@ public class C206_CaseStudy {
 		viewAllStall();
 	}
 	private Stall inputStall() {
-		int id = Helper.readInt("Enter asset tag > ");
-		String name = Helper.readString("Enter description > ");
-		int zoom = Helper.readInt("Enter optical zoom > ");
-		String operationDate = Helper.readString("Enter asset tag > ");
-		String operationTime= Helper.readString("Enter asset tag > ");
-		String category= Helper.readString("Enter asset tag > ");
-		String operator= Helper.readString("Enter asset tag > ");
+		int id = Helper.readInt("Enter Stall ID > ");
+		String name = Helper.readString("Enter Stall Name > ");
+		String operationDate = Helper.readString("Enter Operation Date > ");
+		String operationTime= Helper.readString("Enter Operation Time > ");
+		String category= Helper.readString("Enter Stall Category ");
+		String operator= Helper.readString("Enter Operator Name > ");
 		Stall st = new Stall(id, name, LocalDate.parse(operationDate),  operationTime, 
 				 category, operator);
 		return st;
