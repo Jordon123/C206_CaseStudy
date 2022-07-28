@@ -19,11 +19,6 @@ public class Stall {
 		this.category = category;
 		this.operator = operator;
 	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public void setName(String name) {
 		this.name = name;
 	}

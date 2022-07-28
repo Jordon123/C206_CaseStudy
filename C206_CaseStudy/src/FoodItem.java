@@ -33,4 +33,7 @@ public class FoodItem {
 	public boolean isPromotion() {
 		return promotion;
 	}
+	public void setName(String name) {
+		this.name = name;
+	}
 }

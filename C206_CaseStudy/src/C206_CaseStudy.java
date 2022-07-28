@@ -1,5 +1,7 @@
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 
 //need to change all the helper. texts to proper sentences
 public class C206_CaseStudy {
@@ -67,10 +69,33 @@ public class C206_CaseStudy {
 				}
 				else if (choice3 == 3) {
 					stallReqOrMenu();
-
+					int choice4 = Helper.readInt("choice");
+					if (choice4 == 1) {
+						//add req ord
+						addRequestOrder();
+					}else if(choice4 == 2) {
+						//view req order
+						viewAllRequestOrder();
+					}else if(choice4 == 3) {
+						//change rq order
+						changeRequestOrder();
+					}else if(choice4 == 4) {
+						//delete req order
+						removeRequestOrder();
+					}
 				}
 				else if (choice3 == 4) {
-					
+					dailyPromMenu();
+					int choice5 = Helper.readInt("Choice > ");
+					if(choice5 == 1) {
+						addPromotion();
+					}else if(choice5 == 2) {
+						viewPromotion();
+					}else if(choice5 == 3) {
+						changePromotion();
+					}else if(choice5 == 4) {
+						deletePromotion();
+					}
 				}
 			}
 			else if (ans == 4) {
@@ -116,9 +141,18 @@ public class C206_CaseStudy {
 	private void changeStall() {
 		viewAllStall();
 		int id = Helper.readInt("Id");
+		String name = Helper.readString("Name>");
+		Date operationDate = Helper.readDate("OperationDate");
+		String operationTime = Helper.readString("Operation Time");
+		String category = Helper.readString("Cateogry");
+		String operator =  Helper.readString("operator");
 		for(Stall s: stallArr) {
 			if(s.getId() == id) {
 					//todo - set all the values except id using setter in stall.java
+				s.setName(name);
+				s.setOperationDate(LocalDate.parse(operationDate.toString()));
+				s.setOperationTime(operationTime);
+				s.setOperator(operator);
 			}
 		}	
 	}
@@ -165,10 +199,13 @@ public class C206_CaseStudy {
 	private void changeFoodItem() {
 		viewAllFoodItem();
 		int id = Helper.readInt("Food id to change");
-		int price = Helper.readInt("price");
+		String name = Helper.readString("name > ");
+		int price = Helper.readInt("price > ");
 		for(FoodItem f:foodItemArr) {
 			if(f.getId() == id) {
 				//todo - set all the values except id using setter in fooditem.java
+				f.setPrice(price);
+				f.setName(name);
 			}
 		}
 	}
@@ -191,15 +228,8 @@ public class C206_CaseStudy {
 		int id = Helper.readInt("id");
 		String name = Helper.readString("Name");
 		int price = Helper.readInt("Price");
-		char promotion = Helper.readChar("Promotion item ? (y/n)");
 		if(price<=15 && price>=3) {
-			if(promotion == 'y') {
-				fI = new FoodItem( id,  name,  price, true);
-			}
-			else if(promotion == 'n') {
-				fI = new FoodItem( id,  name,  price);
-			}
-			
+			fI = new FoodItem( id,  name,  price);
 		}
 		return fI;
 	}
@@ -213,6 +243,7 @@ public class C206_CaseStudy {
 		System.out.println(output);
 	}
 	private void viewPromotionFoodItem() {
+		//TODO - make it for entire week
 		String output = "Promotion Item!\n";
 		for(FoodItem f:foodItemArr) {
 			if(f.isPromotion()) {
@@ -223,7 +254,7 @@ public class C206_CaseStudy {
 	}
 	//------------------------------------------------------Stall Operators----------------------------------------------------------------
 	private void stallOpMenu() {
-		System.out.println("1. VIew food items");
+		System.out.println("1. View food items");
 		System.out.println("2. Update request status");
 		System.out.println("3. Edit request order");
 		System.out.println("4. Edit Daily promotion Offer");
@@ -258,8 +289,11 @@ public class C206_CaseStudy {
 		requestArr.add(new RequestOrder(id,name,order));
 	}
 	private void viewAllRequestOrder() {
+		String output = String.format("%-10s %-15s %-10s %s", "ID","Name","Order Status","order");
 		for(RequestOrder r: requestArr) {
 			//TODO	- string.format print all request order in arr
+			output+= String.format("%-10d %-15s %-10s %s", r.getId(),r.getName(),r.orderStatus(),r.getOrder());
+					
 		}
 	}
 	private void changeRequestOrder() {
@@ -283,6 +317,19 @@ public class C206_CaseStudy {
 			}
 		}
 	}
+	private void addPromotion() {
+		
+	}
+	private void viewPromotion() {
+		
+	}
+	private void changePromotion() {
+		
+	}
+	private void deletePromotion() {
+		
+	}
 	
-	
+	//------------------------------------------------------Customer----------------------------------------------------------------
+
 }

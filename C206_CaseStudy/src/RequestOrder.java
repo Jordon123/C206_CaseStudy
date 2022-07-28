@@ -31,6 +31,14 @@ public class RequestOrder {
 	public int getId() {
 		return id;
 	}
+	public String orderStatus() {
+		if(isOrderStatus()) {
+			return "Order Completed";
+		}
+		else {
+			return "Processing";
+		}
+	}
 	
 	
 }
