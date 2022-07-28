@@ -166,14 +166,14 @@ public class C206_CaseStudy {
 		String name = Helper.readString("Enter Stall Name > ");
 		String operationDate = Helper.readString("Enter Operation Date > ");
 		String operationTime= Helper.readString("Enter Operation Time > ");
-		String category= Helper.readString("Enter Stall Category ");
+		String category= Helper.readString("Enter Stall Category > ");
 		String operator= Helper.readString("Enter Operator Name > ");
 		Stall st = new Stall(id, name, LocalDate.parse(operationDate),  operationTime, 
 				 category, operator);
 		return st;
 	}
 	private void viewAllStall() {
-		String output = String.format("%-5s %-15s %-15s %-10s %-15s %-10s\n", "ID","Name","Operation Date","Operation Time","Category","Operator");
+		String output = String.format("%-5s %-15s %-15s %-10s %-15s %-10s\n", "Stall ID","Stall Name","Operation Date","Operation Time","Category","Operator Name");
 		for(Stall s: stallArr) {
 			output+=String.format("%-5d %-15s %-15s %-10s %-15s %-10s\n", s.getId(),s.getName(),s.getOperationDate().toString(),s.getOperationTime(),s.getCategory(),s.getOperator());
 		}
