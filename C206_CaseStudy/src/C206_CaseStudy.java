@@ -1,10 +1,12 @@
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+//need to change all the helper. texts to proper sentences
 public class C206_CaseStudy {
 	private static final int MAX_STALL = 10;
 	private ArrayList<Stall> stallArr = new ArrayList<Stall>();
 	private ArrayList<FoodItem> foodItemArr = new ArrayList<FoodItem>();
+	private ArrayList<RequestOrder> requestArr = new ArrayList<RequestOrder>();
 	public static void main(String[] args) {
 		// Creating Array for Stalls
 		C206_CaseStudy csa = new C206_CaseStudy();
@@ -55,6 +57,21 @@ public class C206_CaseStudy {
 			}
 			else if(ans == 4) {
 				//todo
+				stallOpMenu();
+				int choice3 = Helper.readInt("Choice > ");
+				if(choice3 == 1) {
+					menu();
+				}
+				else if (choice3 == 2) {
+					updateRequestStatus();
+				}
+				else if (choice3 == 3) {
+					stallReqOrMenu();
+
+				}
+				else if (choice3 == 4) {
+					
+				}
 			}
 			else if (ans == 4) {
 				System.out.println("End");
@@ -66,7 +83,7 @@ public class C206_CaseStudy {
 		System.out.println("1. Menu");
 		System.out.println("2. Stall");
 		System.out.println("3. Food Item");
-		System.out.println("4. IDK");
+		System.out.println("4. Request Order");
 	}
 	
 	//------------------------------------------------------Stall----------------------------------------------------------------
@@ -204,6 +221,68 @@ public class C206_CaseStudy {
 		}
 		System.out.println(output);
 	}
-	//------------------------------------------------------order----------------------------------------------------------------
+	//------------------------------------------------------Stall Operators----------------------------------------------------------------
+	private void stallOpMenu() {
+		System.out.println("1. VIew food items");
+		System.out.println("2. Update request status");
+		System.out.println("3. Edit request order");
+		System.out.println("4. Edit Daily promotion Offer");
+		
+	}
+	private void stallReqOrMenu() {
+		System.out.println("1. Add request order");
+		System.out.println("2. view request order");
+		System.out.println("3. change request order");
+		System.out.println("4. remove request order");
+	}
+	private void dailyPromMenu() {
+		System.out.println("1. Add daily promotion");
+		System.out.println("2. view daily promotion");
+		System.out.println("3. change daily promotion");
+		System.out.println("4. remove daily promotion");
+	}
+	private void updateRequestStatus() {
+		viewAllRequestOrder();
+		int id = Helper.readInt("Enter id to change status > ");
+		char status = Helper.readChar("Order Completed? (y/n)");
+		for(RequestOrder r: requestArr) {
+			if(r.getId() == id && status == 'y') {
+				r.setOrderStatus(true);
+			}
+		}
+	}
+	private void addRequestOrder() {
+		int id = Helper.readInt("Enter id");
+		String name = Helper.readString("Order Name");
+		String order = Helper.readString("Order Items");
+		requestArr.add(new RequestOrder(id,name,order));
+	}
+	private void viewAllRequestOrder() {
+		for(RequestOrder r: requestArr) {
+			//TODO	- string.format print all request order in arr
+		}
+	}
+	private void changeRequestOrder() {
+		viewAllRequestOrder();
+		int id = Helper.readInt("Enter id");
+		String name = Helper.readString("update order Name");
+		String order = Helper.readString("updated Order Items");
+		for(RequestOrder r: requestArr) {
+			if(r.getId() == id) {
+				r.setName(name);
+				r.setOrder(order);
+			}
+		}
+	}
+	private void removeRequestOrder() {
+		viewAllRequestOrder();
+		int id = Helper.readInt("Enter id");
+		for(RequestOrder r: requestArr) {
+			if(r.getId() == id) {
+				requestArr.remove(r);
+			}
+		}
+	}
+	
 	
 }

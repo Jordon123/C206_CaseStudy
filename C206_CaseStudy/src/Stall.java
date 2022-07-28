@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-// Done by Jordon
+// Done by Jordon - i edited a bit
 
 public class Stall {
 	private int id;
