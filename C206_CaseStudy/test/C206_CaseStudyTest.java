@@ -12,6 +12,7 @@ public class C206_CaseStudyTest {
 	private ArrayList<Stall> stallArr;
 	private ArrayList<FoodItem> foodItemArr;
 	private ArrayList<RequestOrder> requestArr;
+	private ArrayList<Order> orderArr;
 			
 	private Stall stall1;
 	private Stall stall2;
