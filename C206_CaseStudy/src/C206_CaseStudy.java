@@ -9,6 +9,7 @@ public class C206_CaseStudy {
 	private ArrayList<Stall> stallArr = new ArrayList<Stall>();
 	private ArrayList<FoodItem> foodItemArr = new ArrayList<FoodItem>();
 	private ArrayList<RequestOrder> requestArr = new ArrayList<RequestOrder>();
+	private ArrayList<Order> orderArr = new ArrayList<Order>();
 	public static void main(String[] args) {
 		// Creating Array for Stalls
 		C206_CaseStudy csa = new C206_CaseStudy();
@@ -110,6 +111,13 @@ public class C206_CaseStudy {
 			else if(ans == 3) {
 				customerMenu();
 				int choice6 = Helper.readInt("Choice > ");
+				if (choice6 == 1) {
+					addOrder();
+				} else if (choice6 == 2) {
+					viewAllOrder();
+				} else if (choice6 == 3) {
+					deleteOrder();
+				}
 				
 			}
 			else if(ans == 4) {
@@ -388,14 +396,31 @@ public class C206_CaseStudy {
 	}
 	
 	//------------------------------------------------------Customer----------------------------------------------------------------
-	//cutomerorder
+	//customerorder
 	private void addOrder() {
-		//TODO
+		int id = Helper.readInt("Enter id > ");
+		String name = Helper.readString("Enter name > ");
+		String stall = Helper.readString("Enter stall name > ");
+		String food = Helper.readString("Enter food > ");
+		int price = Helper.readInt("Enter price > ");
+		Order orderNew = new Order(id, name, stall, food, price);
+		orderArr.add(orderNew);
 	}
+	
 	private void viewAllOrder() {
-		
+		String output = String.format("%-15s %-11s %-10s %-10s %-10s", "ORDER ID", "NAME", "STALL", "FOOD", "PRICE");
+		for (Order order : orderArr) {
+			output += String.format("%-15d %-11s %-10s %-10s %-10d", order.getId(), order.getName(), order.getStall(), order.getFood(), order.getPrice());
+		}
+		System.out.println(output);
 	}
+	
 	private void deleteOrder() {
-		
+		int id = Helper.readInt("Enter order id to remove > ");
+		for (Order order : orderArr) {
+			if (order.getId() == id) {
+				orderArr.remove(order);
+			}
+		}
 	}
 }
