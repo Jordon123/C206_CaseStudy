@@ -140,3 +140,64 @@ public class C206_CaseStudyTest {
 	
 
 }
+	@Test
+	public void addFoodItemTest() {
+		foodItemArr.clear();
+		//check if arraylist is empty at the beginning
+		assertNotNull("Test if array is empty at start",foodItemArr);
+		
+		//add a new fooditem object to arraylist
+		C206_CaseStudy.addFoodItem(foodItemArr,new FoodItem(1,"Chicken Rice",4));
+		
+		//check if arraylist contains new item that is added
+		assertEquals("Test if the arraylist contains the added array",1,foodItemArr.size());
+		
+		foodItemArr.clear();
+		//------------------------------------------------------------------------------------------------------------
+		//if price less than limit
+		//check if arraylist is empty at the beginning
+		assertNotNull("Test if array is empty at start",foodItemArr);
+		
+		//add a new fooditem object to arraylist
+		C206_CaseStudy.addFoodItem(foodItemArr,new FoodItem(1,"Chicken Rice",2));
+		
+		//check if arraylist does not contan new item 
+		assertEquals("Test if the arraylist does not contan new item ",0,foodItemArr.size());
+		
+		foodItemArr.clear();
+		//------------------------------------------------------------------------------------------------------------
+		//If price is on the limit (boundary)
+		//check if arraylist is empty at the beginning
+		assertNotNull("Test if array is empty at start",foodItemArr);
+		
+		//add a new fooditem object to arraylist
+		C206_CaseStudy.addFoodItem(foodItemArr,new FoodItem(1,"Chicken Rice",3));
+		
+		//check if arraylist does not contan new item 
+		assertEquals("Test if the arraylist does not contan new item ",1,foodItemArr.size());
+		
+		foodItemArr.clear();
+		//------------------------------------------------------------------------------------------------------------
+		//error
+		//check if arraylist is empty at the beginning
+		assertNotNull("Test if array is empty at start",foodItemArr);
+		
+		//add a new fooditem object to arraylist
+		C206_CaseStudy.addFoodItem(foodItemArr,new FoodItem(1,"Chicken Rice",17));
+		
+		//check if arraylist does not contan new item 
+		assertEquals("Test if the arraylist does not contan new item ",0,foodItemArr.size());
+		
+	}
+	@Test
+	public void viewFoodItemTest() {
+		foodItemArr.clear();
+		//check if arraylist is empty at the beginning
+		assertNotNull("Test if array is empty at start",foodItemArr);
+		
+		//add a new fooditem object to arraylist
+		C206_CaseStudy.addFoodItem(foodItemArr,new FoodItem(1,"Chicken Rice",4));
+		
+		//check if arraylist contains new item that is added
+		assertTrue(C206_CaseStudy.viewAllFoodItem(foodItemArr).contains("Chicken Rice"));
+	}
