@@ -318,7 +318,16 @@ public class C206_CaseStudy {
 		}
 	}
 	private void addPromotion() {
-		
+		int id = Helper.readInt("id > ");
+		boolean promotion = true;
+		int promotionPrice;
+		for( FoodItem f: foodItemArr ) {
+			if(f.getId() == id) {
+				promotionPrice = f.getPrice()-2;
+				f.setPromotion(promotion);
+				f.setPromotionPrice(promotionPrice);
+			}
+		}
 	}
 	private void viewPromotion() {
 		
