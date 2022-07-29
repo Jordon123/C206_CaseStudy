@@ -326,7 +326,7 @@ public class C206_CaseStudy {
 				promotionPrice = f.getPrice()-2;
 				f.setPromotion(promotion);
 				f.setPromotionPrice(promotionPrice);
-			}
+			}//done
 		}
 	}
 	private void viewPromotion() {
