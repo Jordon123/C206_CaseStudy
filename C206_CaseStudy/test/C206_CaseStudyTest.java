@@ -26,6 +26,9 @@ public class C206_CaseStudyTest {
 	private Stall stall10;
 	private Stall stall11;
 	
+	private Order order1;
+	private Order order2;
+	private Order order3;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -43,6 +46,10 @@ public class C206_CaseStudyTest {
 		stall11 = new Stall(11, "stall11", LocalDate.of(2020,11,13),"9am","Western", "Fail");
 		
 		stallArr= new ArrayList<Stall>();
+		
+		order1 = new Order(1, "order1", "orderStall1", "orderFood1", 10);
+		order2 = new Order(2, "order2", "orderStall2", "orderFood2", 25);
+		order3 = new Order(3, "order3", "orderStall3", "orderFood3", 30);
 		
 	}
 
@@ -109,5 +116,27 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.deleteStall(stallArr, 2);	
 		assertEquals("Test if that Stall arraylist size is 1?",1, stallArr.size());
 	}
+	
+	//-------------------------------------------------------customer test--------------------------------------------------------
+		
+	@Test
+	public void doAddOrder() {
+		// Check list is not null, so can add new order
+		assertNotNull("Test if there is valid Order arraylist to add to", orderArr);
+		
+		// Add to orderArr
+		C206_CaseStudy.addOrder(orderArr, order1);
+		assertEquals("Test if that orderArr arraylist size is 1?", 1, orderArr.size());
+		
+		//The item just added is as same as the first item of the list
+		assertSame("Test that order is added same as 1st item of the list?", order1, orderArr.get(0));
+		
+		//Add another item. test The size of the list is 2?
+		C206_CaseStudy.addOrder(orderArr, order2);
+		C206_CaseStudy.addOrder(orderArr, order3);
+		assertEquals("Test that Camcorder arraylist size is 3?", 3, orderArr.size());
+		assertSame("Test that Camcorder is added same as 3rd item of the list?", order3, orderArr.get(2));
+	}
+	
 
 }

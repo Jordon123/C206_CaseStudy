@@ -397,14 +397,9 @@ public class C206_CaseStudy {
 	
 	//------------------------------------------------------Customer----------------------------------------------------------------
 	//customerorder
-	private void addOrder() {
-		int id = Helper.readInt("Enter id > ");
-		String name = Helper.readString("Enter name > ");
-		String stall = Helper.readString("Enter stall name > ");
-		String food = Helper.readString("Enter food > ");
-		int price = Helper.readInt("Enter price > ");
-		Order orderNew = new Order(id, name, stall, food, price);
-		orderArr.add(orderNew);
+	
+	public static void addOrder(ArrayList<Order> orderArr, Order order)  {
+		orderArr.add(order);
 	}
 	
 	private void viewAllOrder() {
