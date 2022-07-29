@@ -29,7 +29,7 @@ public class C206_CaseStudy {
 				stallMenu();
 				int choice1 = Helper.readInt("Choice > ");
 				if(choice1 == 1) {
-					addStall();
+					addStall(stallArr, inputStall());
 				}
 				else if(choice1 == 2) {
 					viewAllStall();
@@ -120,9 +120,9 @@ public class C206_CaseStudy {
 		System.out.println("4. Remove");
 	}
 	// Method to add stall. 
-	private  void addStall() {
+	public static void addStall(ArrayList<Stall> stallArr, Stall stallNumber) {
 		if(stallArr.size()<MAX_STALL) {
-			stallArr.add(inputStall());
+			stallArr.add(stallNumber);
 		}
 		else if(stallArr.size() >= MAX_STALL) {
 			System.out.println("Maximum Stall Reached!");
