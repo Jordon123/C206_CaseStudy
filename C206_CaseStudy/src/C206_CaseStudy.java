@@ -42,7 +42,9 @@ public class C206_CaseStudy {
 						changeStall();
 					}
 					else if(choice1 == 4) {
-						deleteStall();
+						viewAllStall();
+						int stallNumber = Helper.readInt("Enter Stall ID to delete: ");  
+						deleteStall(stallArr, stallNumber);
 					}
 				}
 				else if(choice0 == 3) {
@@ -166,15 +168,14 @@ public class C206_CaseStudy {
 		}
 	}
 		// Method to delete stall.
-	private void deleteStall() {
-		viewAllStall();
-		int id = Helper.readInt("stall id to delete> ");
-		for(Stall s: stallArr) {
-			if(s.getId() == id) {
-					stallArr.remove(s);
+	public static void deleteStall(ArrayList<Stall> stallArr, int stallNumber) {
+		for(int i = 0; i < stallArr.size(); i++) {
+			if(stallArr.get(i).getId() == stallNumber) {
+				stallArr.remove(i);
 			}
 		}
 	}
+	
 		//Method to change an existing stall
 	private void changeStall() {
 		viewAllStall();
