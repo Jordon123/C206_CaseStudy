@@ -19,47 +19,52 @@ public class C206_CaseStudy {
 		ArrayList<Stall> stallArr = new ArrayList<Stall>();
 		ArrayList<FoodItem> foodItemArr = new ArrayList<FoodItem>();
 		int ans = 1;
-		while(ans != 5) {
+		while(ans != 4) {
 			mainMenu();
 			ans = Helper.readInt("enter>");
+			//canteen admin
 			if(ans == 1) {
-				menu();
-			}
-			else if(ans == 2) {
-				stallMenu();
-				int choice1 = Helper.readInt("Choice > ");
-				if(choice1 == 1) {
-					addStall(stallArr, inputStall());
+				canteenAdminMenu();
+				int choice0 = Helper.readInt("Enter choice > ");
+				if(choice0 == 1) {
+					menu();
 				}
-				else if(choice1 == 2) {
-					viewAllStall();
+				else if(choice0 == 2) {
+					stallMenu();
+					int choice1 = Helper.readInt("Choice > ");
+					if(choice1 == 1) {
+						addStall(stallArr, inputStall());
+					}
+					else if(choice1 == 2) {
+						viewAllStall();
+					}
+					else if(choice1 == 3) {
+						changeStall();
+					}
+					else if(choice1 == 4) {
+						deleteStall();
+					}
 				}
-				else if(choice1 == 3) {
-					changeStall();
-				}
-				else if(choice1 == 4) {
-					deleteStall();
+				else if(choice0 == 3) {
+					foodItemMenu();
+					int choice2 = Helper.readInt("Choice > ");
+					if(choice2 == 1) {
+						addFoodItem();
+					}
+					else if(choice2 == 2) {
+						viewAllFoodItem();
+					}
+					else if(choice2 == 3) {
+						changeFoodItem();
+					}
+					else if(choice2 == 4) {
+						deleteFoodItem();
+					}
 				}
 				
 			}
-			else if(ans == 3) {
-				foodItemMenu();
-				int choice2 = Helper.readInt("Choice > ");
-				if(choice2 == 1) {
-					addFoodItem();
-				}
-				else if(choice2 == 2) {
-					viewAllFoodItem();
-				}
-				else if(choice2 == 3) {
-					changeFoodItem();
-				}
-				else if(choice2 == 4) {
-					deleteFoodItem();
-				}
-			}
-			else if(ans == 4) {
-				//todo
+			//stall operator
+			else if(ans == 2) {
 				stallOpMenu();
 				int choice3 = Helper.readInt("Choice > ");
 				if(choice3 == 1) {
@@ -99,21 +104,53 @@ public class C206_CaseStudy {
 					}
 				}
 			}
-			else if (ans == 4) {
-				System.out.println("End");
+			//customer
+			else if(ans == 3) {
+				customerMenu();
+				int choice6 = Helper.readInt("Choice > ");
+				
 			}
+			else if(ans == 4) {
+				//todo
+				System.out.println("End");
+				
+			}
+			
 		}
 	}
 	private void mainMenu() {
-		System.out.println("WELCOME SDAUHWDWAND");
-		System.out.println("1. Menu");
-		System.out.println("2. Stall");
-		System.out.println("3. Food Item");
-		System.out.println("4. Request Order");
+//		System.out.println("WELCOME SDAUHWDWAND");
+//		System.out.println("1. Menu");
+//		System.out.println("2. Stall");
+//		System.out.println("3. Food Item");
+//		System.out.println("4. Request Order");
+		System.out.println("WELCOME TO CAS");
+		System.out.println("1. Canteen Administrator");
+		System.out.println("2. Stall Operator");
+		System.out.println("3. Customer");
+		System.out.println("4. Exit");
 	}
 	
 	//------------------------------------------------------Stall----------------------------------------------------------------
+	private void canteenAdminMenu() {
+		System.out.println("1. Menu");
+		System.out.println("2. Stall");
+		System.out.println("3. Food Item");
+		System.out.println("4. Exit");
+	}
 	private void stallMenu() {
+		System.out.println("1. Add");
+		System.out.println("2. View");
+		System.out.println("3. Change");
+		System.out.println("4. Remove");
+	}
+	private void foodItemMenu() {
+		System.out.println("1. Add");
+		System.out.println("2. View");
+		System.out.println("3. Change");
+		System.out.println("4. Remove");
+	}
+	private void customerMenu() {
 		System.out.println("1. Add");
 		System.out.println("2. View");
 		System.out.println("3. Change");
@@ -180,12 +217,7 @@ public class C206_CaseStudy {
 		System.out.println(output);
 	}
 	//------------------------------------------------------FoodItem----------------------------------------------------------------
-	private void foodItemMenu() {
-		System.out.println("1. Add");
-		System.out.println("2. View");
-		System.out.println("3. Change");
-		System.out.println("4. Remove");
-	}
+
 	// Method to add FoodItem. 
 	private void addFoodItem() {
 		if(inputFoodItem() != null) {
@@ -321,24 +353,48 @@ public class C206_CaseStudy {
 		int id = Helper.readInt("id > ");
 		boolean promotion = true;
 		int promotionPrice;
+		String promotionDate = Helper.readString("Enter Promotion Date > ");
 		for( FoodItem f: foodItemArr ) {
 			if(f.getId() == id) {
 				promotionPrice = f.getPrice()-2;
 				f.setPromotion(promotion);
 				f.setPromotionPrice(promotionPrice);
+				f.setPromotionDate(LocalDate.parse(promotionDate));
 			}//done
 		}
 	}
 	private void viewPromotion() {
-		
+		String output = "Promotion Item!\n";
+		for(FoodItem f:foodItemArr) {
+			if(f.isPromotion()) {
+				if(f.getPromotionDate().isAfter(LocalDate.now()) && f.getPromotionDate().isBefore(f.getPromotionDate().plusDays(14))) {
+					output=String.format("%-5d %-15s %-10d\n", f.getId(),f.getName(),f.getPrice());
+				}
+			}
+		}
+		System.out.println(output);
 	}
 	private void changePromotion() {
-		
+		//TODO
 	}
 	private void deletePromotion() {
-		
+		int id = Helper.readInt("Enter id > ");
+		for(FoodItem f: foodItemArr) {
+			if(f.isPromotion() && f.getId() == id) {
+				foodItemArr.remove(f);
+			}
+		}
 	}
 	
 	//------------------------------------------------------Customer----------------------------------------------------------------
-
+	//cutomerorder
+	private void addOrder() {
+		//TODO
+	}
+	private void viewAllOrder() {
+		
+	}
+	private void deleteOrder() {
+		
+	}
 }

@@ -7,18 +7,18 @@ public class FoodItem {
 	private int price;
 	private boolean promotion;
 	private int promotionPrice;
+	private LocalDate promotionDate;
+	public LocalDate getPromotionDate() {
+		return promotionDate;
+	}
+	public void setPromotionDate(LocalDate promotionDate) {
+		this.promotionDate = promotionDate;
+	}
 	public FoodItem(int id, String name, int price) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		promotion = false;
-	}
-	public FoodItem(int id, String name, int price, boolean prm, int promotionPrice) {
-		this.id = id;
-		this.name = name;
-		this.price = price;
-		promotion = prm;
-		this.promotionPrice = promotionPrice;
 	}
 	public void setPromotion(boolean promotion) {
 		this.promotion = promotion;
