@@ -176,7 +176,7 @@ public class C206_CaseStudyTest {
 	}
 	
 
-}
+
 	@Test
 	public void addFoodItemTest() {
 		foodItemArr.clear();
@@ -238,4 +238,19 @@ public class C206_CaseStudyTest {
 		//check if arraylist contains new item that is added
 		assertTrue(C206_CaseStudy.viewAllFoodItem(foodItemArr).contains("Chicken Rice"));
 	}
+	
+	@Test
+	public void addRequestOrderTest() {
+		
+		//Check if arrayList is empty at the Beginning
+		assertNotNull("Test that arrayList is empty", requestArr);
+		
+		//add new Request Order to arrayList
+		C206_CaseStudy.addRequestOrder(requestArr, new RequestOrder(1,"Order1", "Order Recorded"));
+		
+		//Check requestOrder
+		assertTrue(C206_CaseStudy.viewAllRequestOrder(requestArr).contains("Order1"));
+		
+	}
+
 }
