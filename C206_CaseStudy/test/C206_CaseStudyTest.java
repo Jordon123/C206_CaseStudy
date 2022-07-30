@@ -30,6 +30,10 @@ public class C206_CaseStudyTest {
 	private Order order2;
 	private Order order3;
 	
+	private RequestOrder reqOrder1;
+	private RequestOrder reqOrder2;
+	private RequestOrder reqOrder3;
+	
 	@Before
 	public void setUp() throws Exception {
 		
@@ -51,6 +55,10 @@ public class C206_CaseStudyTest {
 		order2 = new Order(2, "order2", "orderStall2", "orderFood2", 25);
 		order3 = new Order(3, "order3", "orderStall3", "orderFood3", 30);
 		
+		//Request Order
+		reqOrder1 = new RequestOrder(1, "reqOrder1", "order1");
+		reqOrder2 = new RequestOrder(1, "reqOrder2", "order2");
+		reqOrder3 = new RequestOrder(1, "reqOrder3", "order3");
 	}
 
 	@After
@@ -171,8 +179,8 @@ public class C206_CaseStudyTest {
 		//Add another item. test The size of the list is 2?
 		C206_CaseStudy.addOrder(orderArr, order2);
 		C206_CaseStudy.addOrder(orderArr, order3);
-		assertEquals("Test that Camcorder arraylist size is 3?", 3, orderArr.size());
-		assertSame("Test that Camcorder is added same as 3rd item of the list?", order3, orderArr.get(2));
+		assertEquals("Test that order arraylist size is 3?", 3, orderArr.size());
+		assertSame("Test that order is added same as 3rd item of the list?", order3, orderArr.get(2));
 	}
 	
 
@@ -239,6 +247,8 @@ public class C206_CaseStudyTest {
 		assertTrue(C206_CaseStudy.viewAllFoodItem(foodItemArr).contains("Chicken Rice"));
 	}
 	
+	
+	///Request Order Test Cases (Need to fix in CaseStudy) :|
 	@Test
 	public void viewRequestOrderTest() {
 		
@@ -246,16 +256,29 @@ public class C206_CaseStudyTest {
 		assertNotNull("Test that arrayList is empty", requestArr);
 		
 		//add new Request Order to arrayList
-		C206_CaseStudy.addRequestOrder(requestArr, new RequestOrder(1,"Order1", "Order Recorded"));
+		C206_CaseStudy.addRequestOrder(requestArr, new RequestOrder(1,"Order1", "orderFood1"));
 		
 		//Check requestOrder
 		assertTrue(C206_CaseStudy.viewAllRequestOrder(requestArr).contains("Order1"));	
 	}
 	
 	@Test
-	public void viewRequestOrderTest() {
-		//Check if arrayList is empty at the Beginning
-				assertNotNull("Test that arrayList is empty", requestArr);
+	public void addRequestOrderTest() {
+		requestArr.clear();
+		//check if arraylist is empty at the beginning
+		assertNotNull("Test if array is empty at start",requestArr);
+		
+		// Add to orderArr
+		C206_CaseStudy.addRequestOrder(requestArr, reqOrder1);
+		C206_CaseStudy.addRequestOrder(requestArr, reqOrder2);
+		C206_CaseStudy.addRequestOrder(requestArr, reqOrder3);
+		assertEquals("Test that requestArr arraylist size is 3?", 3, requestArr.size());
+		assertSame("Test that reqOrder is added to the list?", 3, orderArr.get(2));
+	}
+	
+	@Test
+	public void deleteRequestOrderTest() {
+		
 	}
 
 }
