@@ -240,7 +240,7 @@ public class C206_CaseStudyTest {
 	}
 	
 	@Test
-	public void addRequestOrderTest() {
+	public void viewRequestOrderTest() {
 		
 		//Check if arrayList is empty at the Beginning
 		assertNotNull("Test that arrayList is empty", requestArr);
@@ -249,8 +249,13 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addRequestOrder(requestArr, new RequestOrder(1,"Order1", "Order Recorded"));
 		
 		//Check requestOrder
-		assertTrue(C206_CaseStudy.viewAllRequestOrder(requestArr).contains("Order1"));
-		
+		assertTrue(C206_CaseStudy.viewAllRequestOrder(requestArr).contains("Order1"));	
+	}
+	
+	@Test
+	public void viewRequestOrderTest() {
+		//Check if arrayList is empty at the Beginning
+				assertNotNull("Test that arrayList is empty", requestArr);
 	}
 
 }
