@@ -78,8 +78,9 @@ public class C206_CaseStudyTest {
 		assertNotNull("Test if there is valid Stall arraylist to add to", stallArr);
 		
 		//Test that stalls can be add into the ArrayList.
-		C206_CaseStudy.addStall(stallArr, stall1);	
-		assertEquals("Test if that Camcorder arraylist size is 1?",1, stallArr.size());
+		C206_CaseStudy.addStall(stallArr, stall1);
+		assertEquals("Test that order arraylist size is 1?", 1, stallArr.size());
+
 		
 		//Test that the stall added into the Array contains all the right information.
 		assertSame("Test that Stall is added same as 1st item of the list?", stall1, stallArr.get(0));
