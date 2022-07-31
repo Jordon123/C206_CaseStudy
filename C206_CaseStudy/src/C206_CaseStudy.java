@@ -81,10 +81,10 @@ public class C206_CaseStudy {
 					int choice4 = Helper.readInt("choice");
 					if (choice4 == 1) {
 						//add req ord
-						addRequestOrder();
+//						addRequestOrder();
 					}else if(choice4 == 2) {
 						//view req order
-						viewAllRequestOrder();
+//						viewAllRequestOrder();
 					}else if(choice4 == 3) {
 						//change rq order
 						changeRequestOrder();
@@ -324,7 +324,7 @@ public class C206_CaseStudy {
 		System.out.println("4. remove daily promotion");
 	}
 	private void updateRequestStatus() {
-		viewAllRequestOrder();
+//		viewAllRequestOrder();
 		int id = Helper.readInt("Enter id to change status > ");
 		char status = Helper.readChar("Order Completed? (y/n)");
 		for(RequestOrder r: requestArr) {
@@ -333,22 +333,22 @@ public class C206_CaseStudy {
 			}
 		}
 	}
-	private void addRequestOrder() {
-		int id = Helper.readInt("Enter id");
-		String name = Helper.readString("Order Name");
-		String order = Helper.readString("Order Items");
-		requestArr.add(new RequestOrder(id,name,order));
+	public static void addRequestOrder(ArrayList<RequestOrder> requestArr, RequestOrder requestOrder) {
+//		int id = Helper.readInt("Enter id");
+//		String name = Helper.readString("Order Name");
+//		String order = Helper.readString("Order Items");
+		requestArr.add(requestOrder);
 	}
-	private void viewAllRequestOrder() {
-		String output = String.format("%-10s %-15s %-10s %s", "ID","Name","Order Status","order");
+	public static String viewAllRequestOrder(ArrayList<RequestOrder> requestArr) {
+		String output = String.format("%-10s %-15s %-10s %s\n", "ID","Name","Order Status","order");
 		for(RequestOrder r: requestArr) {
 			//TODO	- string.format print all request order in arr
-			output+= String.format("%-10d %-15s %-10s %s", r.getId(),r.getName(),r.orderStatus(),r.getOrder());
-					
+			output+= String.format("%-10d %-15s %-10s %s\n", r.getId(),r.getName(),r.orderStatus(),r.getOrder());
 		}
+		return output;
 	}
 	private void changeRequestOrder() {
-		viewAllRequestOrder();
+//		viewAllRequestOrder();
 		int id = Helper.readInt("Enter id");
 		String name = Helper.readString("update order Name");
 		String order = Helper.readString("updated Order Items");
@@ -360,7 +360,7 @@ public class C206_CaseStudy {
 		}
 	}
 	private void removeRequestOrder() {
-		viewAllRequestOrder();
+//		viewAllRequestOrder();
 		int id = Helper.readInt("Enter id");
 		for(RequestOrder r: requestArr) {
 			if(r.getId() == id) {
