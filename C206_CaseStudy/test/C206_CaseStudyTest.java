@@ -10,9 +10,9 @@ public class C206_CaseStudyTest {
 
 	// prepare test data
 	private ArrayList<Stall> stallArr;
-	private ArrayList<FoodItem> foodItemArr;
-	private ArrayList<RequestOrder> requestArr;
-	private ArrayList<Order> orderArr;
+	private ArrayList<FoodItem> foodItemArr = new ArrayList<FoodItem>();
+	private ArrayList<RequestOrder> requestArr = new ArrayList<RequestOrder>();
+	private ArrayList<Order> orderArr = new ArrayList<Order>();
 			
 	private Stall stall1;
 	private Stall stall2;
