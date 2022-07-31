@@ -247,7 +247,20 @@ public class C206_CaseStudyTest {
 		//check if arraylist contains new item that is added
 		assertTrue(C206_CaseStudy.viewAllFoodItem(foodItemArr).contains("Chicken Rice"));
 	}
-	
+	@Test
+	public void deleteFoodItemTest() {
+		foodItemArr.clear();
+		//check if arraylist is empty at the beginning
+		assertNotNull("Test if array is empty at start",foodItemArr);
+		
+		//add a new fooditem object to arraylist
+		FoodItem fi = new FoodItem(1,"Chicken Rice",4);
+		C206_CaseStudy.addFoodItem(foodItemArr,fi);
+		
+		//check if arraylist contains new item that is added
+		C206_CaseStudy.deleteFoodItem(foodItemArr,fi);
+		assertEquals(foodItemArr.size(),0);
+	}
 	
 	///Request Order Test Cases (Need to fix in CaseStudy) :|
 	@Test
