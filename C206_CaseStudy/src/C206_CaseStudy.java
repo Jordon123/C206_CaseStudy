@@ -52,16 +52,16 @@ public class C206_CaseStudy {
 					foodItemMenu();
 					int choice2 = Helper.readInt("Choice > ");
 					if(choice2 == 1) {
-						addFoodItem();
+//						addFoodItem();
 					}
 					else if(choice2 == 2) {
-						viewAllFoodItem();
+//						viewAllFoodItem();
 					}
 					else if(choice2 == 3) {
 						changeFoodItem();
 					}
 					else if(choice2 == 4) {
-						deleteFoodItem();
+//						deleteFoodItem();
 					}
 				}
 				
@@ -112,7 +112,7 @@ public class C206_CaseStudy {
 				customerMenu();
 				int choice6 = Helper.readInt("Choice > ");
 				if (choice6 == 1) {
-					addOrder();
+//					addOrder();
 				} else if (choice6 == 2) {
 					viewAllOrder();
 				} else if (choice6 == 3) {
@@ -248,7 +248,7 @@ public class C206_CaseStudy {
 		}
 	}
 	private void changeFoodItem() {
-		viewAllFoodItem();
+//		viewAllFoodItem();
 		int id = Helper.readInt("Food id to change");
 		String name = Helper.readString("name > ");
 		int price = Helper.readInt("price > ");
@@ -271,7 +271,7 @@ public class C206_CaseStudy {
 		}
 	}
 	private void menu() {
-		viewAllFoodItem();
+//		viewAllFoodItem();
 		viewPromotionFoodItem();
 	}
 	private FoodItem inputFoodItem() {
