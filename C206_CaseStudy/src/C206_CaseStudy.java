@@ -238,9 +238,9 @@ public class C206_CaseStudy {
 	//------------------------------------------------------FoodItem----------------------------------------------------------------
 
 	// Method to add FoodItem. 
-	private void addFoodItem() {
-		if(inputFoodItem() != null) {
-			foodItemArr.add(inputFoodItem());
+	public static void addFoodItem(ArrayList<FoodItem> foodItemArr, FoodItem fooditem1) {
+		if(fooditem1.getPrice()>=3 && fooditem1.getPrice() <= 15) {
+			foodItemArr.add(fooditem1);
 			System.out.println("added");
 		}
 		else {
@@ -284,14 +284,14 @@ public class C206_CaseStudy {
 		}
 		return fI;
 	}
-	private void viewAllFoodItem() {
+	public static String viewAllFoodItem(ArrayList<FoodItem> foodItemArr) {
 		String output = String.format("%-5s %-15s %-10s\n", "ID","Name","Price");
 		for(FoodItem f:foodItemArr) {
 			if(!f.isPromotion()) {
 				output+=String.format("%-5d %-15s %-10d\n", f.getId(),f.getName(),f.getPrice());
 			}
 		}
-		System.out.println(output);
+		return output;
 	}
 	private void viewPromotionFoodItem() {
 		//TODO - make it for entire week
