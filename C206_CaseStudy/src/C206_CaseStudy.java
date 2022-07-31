@@ -261,14 +261,15 @@ public class C206_CaseStudy {
 		}
 	}
 	// Method to delete FoodItem.
-	private void deleteFoodItem(ArrayList<FoodItem> foodItemArr, FoodItem fooditem) {
+	public static void deleteFoodItem(ArrayList<FoodItem> foodItemArr, FoodItem fooditem) {
+		foodItemArr.remove(fooditem);
 //		viewAllFoodItem();
 //		int id = Helper.readInt("Food id to delete");
-		for(FoodItem f:foodItemArr) {
-			if(f.getId() == fooditem.getId()) {
-				stallArr.remove(f);
-			}
-		}
+//		for(FoodItem f:foodItemArr) {
+//			if(f.getId() == fooditem.getId()) {
+				
+//			}
+//		}
 	}
 	private void menu() {
 //		viewAllFoodItem();
