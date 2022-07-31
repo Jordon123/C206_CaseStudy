@@ -287,7 +287,7 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addRequestOrder(requestArr, reqOrder2);
 		C206_CaseStudy.addRequestOrder(requestArr, reqOrder3);
 		assertEquals("Test that requestArr arraylist size is 3?", 3, requestArr.size());
-		assertSame("Test that reqOrder is added to the list?", 3, orderArr.get(2));
+		assertSame("Test that reqOrder is added to the list?", reqOrder3, requestArr.get(2));
 	}
 	
 	@Test
