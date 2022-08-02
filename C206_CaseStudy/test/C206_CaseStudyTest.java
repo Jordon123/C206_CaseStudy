@@ -296,7 +296,7 @@ public class C206_CaseStudyTest {
 		//check if arraylist is empty at the beginning
 		assertNotNull("Test if array is empty at start",requestArr);
 		
-		//add a new fooditem object to arraylist
+		//add a new request object to arraylist
 		C206_CaseStudy.addRequestOrder(requestArr, reqOrder1);
 		assertEquals("Test that requestArr arraylist size is 1?", 1, requestArr.size());
 		
