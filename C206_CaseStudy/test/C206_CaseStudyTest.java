@@ -292,7 +292,18 @@ public class C206_CaseStudyTest {
 	
 	@Test
 	public void deleteRequestOrderTest() {
+		requestArr.clear();
+		//check if arraylist is empty at the beginning
+		assertNotNull("Test if array is empty at start",requestArr);
 		
+		//add a new fooditem object to arraylist
+		C206_CaseStudy.addRequestOrder(requestArr, reqOrder1);
+		assertEquals("Test that requestArr arraylist size is 1?", 1, requestArr.size());
+		
+		
+		//check if arraylist contains new item that is added
+		
+		assertEquals(requestArr.size(),1);
 	}
 	
 	@Test
