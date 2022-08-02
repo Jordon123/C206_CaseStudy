@@ -158,7 +158,7 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addStall(stallArr, stall9);
 		C206_CaseStudy.addStall(stallArr, stall10);
 		
-		//test that only cannot view stalls outside the max range(10) //error
+		//test that user cannot view the 11th stall outside the max range(10) //boundary
 		C206_CaseStudy.addStall(stallArr, stall11);
 		String testOutput3 = "";
 		assertEquals(testOutput3, C206_CaseStudy.viewStall(stallArr, 11));
