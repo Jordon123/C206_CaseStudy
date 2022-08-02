@@ -294,5 +294,10 @@ public class C206_CaseStudyTest {
 	public void deleteRequestOrderTest() {
 		
 	}
+	
+	@Test
+	public void viewPromotion() {
+		
+	}
 
 }
