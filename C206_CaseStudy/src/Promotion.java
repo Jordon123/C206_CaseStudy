@@ -10,4 +10,5 @@ public class Promotion extends FoodItem{
 	public LocalDate getDate(){
 		return date;		
 	}
+	
 }

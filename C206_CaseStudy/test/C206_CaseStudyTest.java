@@ -302,13 +302,28 @@ public class C206_CaseStudyTest {
 		
 		
 		//check if arraylist contains new item that is added
-		
-		assertEquals(requestArr.size(),1);
+		assertEquals(requestArr.size(), 1);
 	}
 	
+	
+	//Promotion Left 
 	@Test
 	public void viewPromotion() {
+//		//check if arraylist is empty at the beginning
+//		assertNotNull("Test if array is empty at start",foodItemArr);
+//		
+//		for(FoodItem fi : foodItemArr) {
+//			if(fi.isPromotion()) {
+//				assertTrue(C206_CaseStudy.viewAllFoodItem(foodItemArr).contains((CharSequence) foodItemArr.get(0)));
+//			}
+//		}
+	}
+	
+	public void addPromotion() {
 		
 	}
-
+	
+	public void deletePromotion() {
+		
+	}
 }
