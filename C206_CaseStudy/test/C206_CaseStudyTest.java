@@ -74,15 +74,15 @@ public class C206_CaseStudyTest {
 	@Test
 	public void addStallTest() {
 		
-		//Test that there is a ArrayList to add to.
+		//Test that there is a ArrayList to add to. //normal
 		assertNotNull("Test if there is valid Stall arraylist to add to", stallArr);
 		
-		//Test that stalls can be add into the ArrayList.
+		//Test that only one stall is added into the ArrayList. //boundary
 		C206_CaseStudy.addStall(stallArr, stall1);
 		assertEquals("Test that order arraylist size is 1?", 1, stallArr.size());
 
 		
-		//Test that the stall added into the Array contains all the right information.
+		//Test that the stall added into the Array contains all the right information. //normal
 		assertSame("Test that Stall is added same as 1st item of the list?", stall1, stallArr.get(0));
 		
 		C206_CaseStudy.addStall(stallArr, stall2);
@@ -95,31 +95,33 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addStall(stallArr, stall9);
 		C206_CaseStudy.addStall(stallArr, stall10);
 		
-		//Test that ArrayList will contain MAX 10 Stalls only.
+		//Test that ArrayList cannot contain more than 11 Stalls. //error
 		C206_CaseStudy.addStall(stallArr, stall11);
-		assertEquals("Test if that Stall arraylist size is 10?",10, stallArr.size());
+		assertNotEquals("Test if that Stall arraylist size is 10?",11, stallArr.size());
 		
 	}
 	
 	@Test
 	public void deleteStallTest() {
 		
+		//Test that ArrayList is valid //normal
 		assertNotNull("Test if there is valid Stall arraylist to add to", stallArr);
 		
-		//Test that delete function would work.
+		//Test that delete function would work. //normal
 		C206_CaseStudy.addStall(stallArr, stall1);
 		C206_CaseStudy.deleteStall(stallArr, 1);	
 		assertEquals("Test if that Stall arraylist size is 0?",0, stallArr.size());
 		
-		//Test that delete function would delete the right one
+		//Test that delete function will not delete 2 stalls //error
 		C206_CaseStudy.addStall(stallArr, stall1);
+		C206_CaseStudy.addStall(stallArr, stall2);
 		C206_CaseStudy.deleteStall(stallArr, 2);	
-		assertEquals("Test if that Stall arraylist size is 1?",1, stallArr.size());
+		assertNotEquals("Test if that Stall ArrayList size is not 0?",0, stallArr.size());
 		
 		//Clear the List
 		stallArr.clear();
 		
-		//Test that only 1 stall is deleted
+		//Test that only 1 stall is deleted //boundary
 		C206_CaseStudy.addStall(stallArr, stall1);
 		C206_CaseStudy.addStall(stallArr, stall2);
 		C206_CaseStudy.deleteStall(stallArr, 2);	
@@ -129,7 +131,7 @@ public class C206_CaseStudyTest {
 		@Test
 	public void viewStallTest() {
 		
-		//test that nothing can be view if id is wrong.//error condition
+		//test that nothing can be viewed if there are no stalls in ArrayList.//error condition
 		String checkStalls = C206_CaseStudy.viewStall(stallArr, 1);
 		String testOutput2 = "";
 		assertEquals(testOutput2, checkStalls);
@@ -141,7 +143,7 @@ public class C206_CaseStudyTest {
 		testOutput = String.format("%-5d %-15s %-15s %-10s %-15s %-10s\n",1, "stall1", LocalDate.of(2020,10,3),"10am","Western", "Jordon");			
 		assertEquals(testOutput, C206_CaseStudy.viewStall(stallArr, 1));
 		
-		//test that only 1 item will be displayed when viewStall is used
+		//test that only 1 item will be displayed when viewStall is used //normal
 		String checkNumStalls = C206_CaseStudy.viewStall(stallArr, 1);
 		int testOutputNum = 1;
 		assertEquals(checkNumStalls.lines().count(), 1);
@@ -156,7 +158,7 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addStall(stallArr, stall9);
 		C206_CaseStudy.addStall(stallArr, stall10);
 		
-		//test that only cannot view stalls outside the max range
+		//test that only cannot view stalls outside the max range(10) //error
 		C206_CaseStudy.addStall(stallArr, stall11);
 		String testOutput3 = "";
 		assertEquals(testOutput3, C206_CaseStudy.viewStall(stallArr, 11));
