@@ -186,6 +186,21 @@ public class C206_CaseStudyTest {
 		assertSame("Test that order is added same as 3rd item of the list?", order3, orderArr.get(2));
 	}
 	
+	public static String retrieveAllOrder(ArrayList<Order> orderArr) {
+		String output = "";
+		for (int i = 0; i < orderArr.size(); i++) {
+
+			output += String.format("%-10s %-30s %-10s %-10s %-20s\n", orderArr.get(i).getId(), orderArr.get(i).getName(), orderArr.get(i).getStall(), orderArr.get(i).getFood(), orderArr.get(i).getPrice());
+		}
+		return output;
+	}
+	
+	@Test
+	public static void doViewAllOrder(ArrayList<Order> orderArr) {
+		
+		String output = retrieveAllOrder(orderArr);
+		System.out.println(output);
+	}	
 
 
 	@Test

@@ -413,7 +413,7 @@ public class C206_CaseStudy {
 		orderArr.add(order);
 	}
 	
-	private void viewAllOrder() {
+	public static void viewAllOrder(ArrayList<Order> orderArr) {
 		String output = String.format("%-15s %-11s %-10s %-10s %-10s", "ORDER ID", "NAME", "STALL", "FOOD", "PRICE");
 		for (Order order : orderArr) {
 			output += String.format("%-15d %-11s %-10s %-10s %-10d", order.getId(), order.getName(), order.getStall(), order.getFood(), order.getPrice());
@@ -428,5 +428,9 @@ public class C206_CaseStudy {
 				orderArr.remove(order);
 			}
 		}
+	}
+	
+	private void changeOrder() {
+		
 	}
 }
