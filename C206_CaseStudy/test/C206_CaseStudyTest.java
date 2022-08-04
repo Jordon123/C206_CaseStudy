@@ -195,7 +195,7 @@ public class C206_CaseStudyTest {
 		return output;
 	}
 	
-	@Test
+	
 	public static void doViewAllOrder(ArrayList<Order> orderArr) {
 		
 		String output = retrieveAllOrder(orderArr);
