@@ -17,8 +17,17 @@ public class C206_CaseStudy {
 		
 	}
 	public void start() {
-		ArrayList<Stall> stallArr = new ArrayList<Stall>();
-		ArrayList<FoodItem> foodItemArr = new ArrayList<FoodItem>();
+		Stall stall1 = new Stall(1, "stall1", LocalDate.of(2020,10,3),"10:00am","Western & Chinese", "Jordon");
+		stallArr.add(stall1);
+		Order order1 = new Order(1, "order1", "orderStall1", "Chicken Rice", 3);
+		orderArr.add(order1);
+		RequestOrder reqOrder1 = new RequestOrder(1, "reqOrder1", "order1");
+		requestArr.add(reqOrder1);
+		FoodItem foodItem1 = new FoodItem(1,"Chicken Rice",3);
+		FoodItem foodItem2 = new FoodItem(1,"Fish & Chips",7);
+		foodItemArr.add(foodItem1);
+		foodItem2.setPromotion(true);
+		foodItemArr.add(foodItem2);
 		int ans = 1;
 		while(ans != 4) {
 			mainMenu();
@@ -52,19 +61,19 @@ public class C206_CaseStudy {
 					foodItemMenu();
 					int choice2 = Helper.readInt("Choice > ");
 					if(choice2 == 1) {
-//						addFoodItem();
+						addFoodItem(foodItemArr,inputFoodItem());
 					}
 					else if(choice2 == 2) {
-//						viewAllFoodItem();
+						System.out.println(viewAllFoodItem(foodItemArr));
 					}
 					else if(choice2 == 3) {
 						changeFoodItem();
 					}
 					else if(choice2 == 4) {
-//						deleteFoodItem();
+						System.out.println(viewAllFoodItem(foodItemArr));
+						deleteFoodItem(foodItemArr, Helper.readInt("Enter id of item to be removed: "));
 					}
 				}
-				
 			}
 			//stall operator
 			else if(ans == 2) {
@@ -80,17 +89,16 @@ public class C206_CaseStudy {
 					stallReqOrMenu();
 					int choice4 = Helper.readInt("choice");
 					if (choice4 == 1) {
-						//add req ord
-//						addRequestOrder();
+						addRequestOrder(requestArr, inputRequestOrder());
 					}else if(choice4 == 2) {
-						//view req order
-//						viewAllRequestOrder();
+						System.out.println(viewAllRequestOrder(requestArr));
 					}else if(choice4 == 3) {
 						//change rq order
 						changeRequestOrder();
 					}else if(choice4 == 4) {
 						//delete req order
-						removeRequestOrder();
+						System.out.println(viewAllRequestOrder(requestArr));
+						removeRequestOrder(requestArr, Helper.readInt("Enter id: "));
 					}
 				}
 				else if (choice3 == 4) {
@@ -112,16 +120,15 @@ public class C206_CaseStudy {
 				customerMenu();
 				int choice6 = Helper.readInt("Choice > ");
 				if (choice6 == 1) {
-//					addOrder();
+					addOrder(orderArr, inputOrder());
 				} else if (choice6 == 2) {
-					viewAllOrder();
+					System.out.println(viewAllOrder(orderArr));
 				} else if (choice6 == 3) {
-					deleteOrder();
+					deleteOrder(orderArr,Helper.readInt("Enter id to delete > "));
 				}
 				
 			}
 			else if(ans == 4) {
-				//todo
 				System.out.println("End");
 				
 			}
@@ -129,11 +136,6 @@ public class C206_CaseStudy {
 		}
 	}
 	private void mainMenu() {
-//		System.out.println("WELCOME SDAUHWDWAND");
-//		System.out.println("1. Menu");
-//		System.out.println("2. Stall");
-//		System.out.println("3. Food Item");
-//		System.out.println("4. Request Order");
 		System.out.println("WELCOME TO CAS");
 		System.out.println("1. Canteen Administrator");
 		System.out.println("2. Stall Operator");
@@ -183,7 +185,6 @@ public class C206_CaseStudy {
 			}
 		}
 	}
-	
 		//Method to change an existing stall
 	private void changeStall() {
 		viewAllStall();
@@ -229,9 +230,9 @@ public class C206_CaseStudy {
 		return st;
 	}
 	private void viewAllStall() {
-		String output = String.format("%-5s %-15s %-15s %-10s %-15s %-10s\n", "Stall ID","Stall Name","Operation Date","Operation Time","Category","Operator Name");
+		String output = String.format("%-10s %-15s %-15s %-15s %-15s %-10s\n", "Stall ID","Stall Name","Operation Date","Operation Time","Category","Operator Name");
 		for(Stall s: stallArr) {
-			output+=String.format("%-5d %-15s %-15s %-10s %-15s %-10s\n", s.getId(),s.getName(),s.getOperationDate().toString(),s.getOperationTime(),s.getCategory(),s.getOperator());
+			output+=String.format("%-10d %-15s %-15s %-15s %-15s %-10s\n", s.getId(),s.getName(),s.getOperationDate().toString(),s.getOperationTime(),s.getCategory(),s.getOperator());
 		}
 		System.out.println(output);
 	}
@@ -248,48 +249,44 @@ public class C206_CaseStudy {
 		}
 	}
 	private void changeFoodItem() {
-//		viewAllFoodItem();
+		viewAllFoodItem(foodItemArr);
 		int id = Helper.readInt("Food id to change");
 		String name = Helper.readString("name > ");
 		int price = Helper.readInt("price > ");
 		for(FoodItem f:foodItemArr) {
 			if(f.getId() == id) {
-				//todo - set all the values except id using setter in fooditem.java
 				f.setPrice(price);
 				f.setName(name);
 			}
 		}
 	}
 	// Method to delete FoodItem.
-	public static void deleteFoodItem(ArrayList<FoodItem> foodItemArr, FoodItem fooditem) {
-		foodItemArr.remove(fooditem);
-//		viewAllFoodItem();
-//		int id = Helper.readInt("Food id to delete");
-//		for(FoodItem f:foodItemArr) {
-//			if(f.getId() == fooditem.getId()) {
-				
-//			}
-//		}
+	public static void deleteFoodItem(ArrayList<FoodItem> foodItemArr, int id) {
+		for(int i = 0; i < foodItemArr.size(); i++) {
+			if(foodItemArr.get(i).getId()==id) {
+				foodItemArr.remove(i);
+			}
+		}
 	}
 	private void menu() {
-//		viewAllFoodItem();
+		System.out.println(viewAllFoodItem(foodItemArr));
 		viewPromotionFoodItem();
 	}
 	private FoodItem inputFoodItem() {
 		FoodItem fI = null;
-		int id = Helper.readInt("id");
-		String name = Helper.readString("Name");
-		int price = Helper.readInt("Price");
+		int id = Helper.readInt("ID: ");
+		String name = Helper.readString("Name: ");
+		int price = Helper.readInt("Price: ");
 		if(price<=15 && price>=3) {
 			fI = new FoodItem( id,  name,  price);
 		}
 		return fI;
 	}
 	public static String viewAllFoodItem(ArrayList<FoodItem> foodItemArr) {
-		String output = String.format("%-5s %-15s %-10s\n", "ID","Name","Price");
+		String output = String.format("%-5s %-25s %-10s\n", "ID","Name","Price");
 		for(FoodItem f:foodItemArr) {
 			if(!f.isPromotion()) {
-				output+=String.format("%-5d %-15s %-10d\n", f.getId(),f.getName(),f.getPrice());
+				output+=String.format("%-5d %-25s %-10d\n", f.getId(),f.getName(),f.getPrice());
 			}
 		}
 		return output;
@@ -299,7 +296,7 @@ public class C206_CaseStudy {
 		String output = "Promotion Item!\n";
 		for(FoodItem f:foodItemArr) {
 			if(f.isPromotion()) {
-				output=String.format("%-5d %-15s %-10d\n", f.getId(),f.getName(),f.getPrice());
+				output+=String.format("%-5d %-15s %-10d\n", f.getId(),f.getName(),f.getPrice());
 			}
 		}
 		System.out.println(output);
@@ -307,8 +304,8 @@ public class C206_CaseStudy {
 	//------------------------------------------------------Stall Operators----------------------------------------------------------------
 	private void stallOpMenu() {
 		System.out.println("1. View food items");
-		System.out.println("2. Update request status");
-		System.out.println("3. Edit request order");
+		System.out.println("2. Update request Order");
+		System.out.println("3. request order");
 		System.out.println("4. Edit Daily promotion Offer");
 		
 	}
@@ -335,16 +332,12 @@ public class C206_CaseStudy {
 		}
 	}
 	public static void addRequestOrder(ArrayList<RequestOrder> requestArr, RequestOrder requestOrder) {
-//		int id = Helper.readInt("Enter id");
-//		String name = Helper.readString("Order Name");
-//		String order = Helper.readString("Order Items");
 		requestArr.add(requestOrder);
 	}
 	public static String viewAllRequestOrder(ArrayList<RequestOrder> requestArr) {
-		String output = String.format("%-10s %-15s %-10s %s\n", "ID","Name","Order Status","order");
+		String output = String.format("%-10s %-15s %-15s %s\n", "ID","Name","Order Status","order");
 		for(RequestOrder r: requestArr) {
-			//TODO	- string.format print all request order in arr
-			output+= String.format("%-10d %-15s %-10s %s\n", r.getId(),r.getName(),r.orderStatus(),r.getOrder());
+			output+= String.format("%-10d %-15s %-15s %s\n", r.getId(),r.getName(),r.orderStatus(),r.getOrder());
 		}
 		return output;
 	}
@@ -360,14 +353,22 @@ public class C206_CaseStudy {
 			}
 		}
 	}
-	private void removeRequestOrder() {
-//		viewAllRequestOrder();
-		int id = Helper.readInt("Enter id");
-		for(RequestOrder r: requestArr) {
-			if(r.getId() == id) {
-				requestArr.remove(r);
+	private void removeRequestOrder(ArrayList<RequestOrder> requestArr, int id) {
+		viewAllRequestOrder(requestArr);
+		for(int i = 0; i < requestArr.size(); i++) {
+			if(requestArr.get(i).getId() == id) {
+				requestArr.remove(i);
 			}
 		}
+	}
+	
+	private RequestOrder inputRequestOrder() {
+		RequestOrder rq = null;
+		int id = Helper.readInt("ID > ");
+		String name = Helper.readString("Name > ");
+		String order = Helper.readString("Enter order items > ");
+		rq = new RequestOrder(id,name,order);
+		return rq;
 	}
 	private void addPromotion() {
 		int id = Helper.readInt("id > ");
@@ -413,24 +414,30 @@ public class C206_CaseStudy {
 		orderArr.add(order);
 	}
 	
-	public static void viewAllOrder(ArrayList<Order> orderArr) {
-		String output = String.format("%-15s %-11s %-10s %-10s %-10s", "ORDER ID", "NAME", "STALL", "FOOD", "PRICE");
+	public static String viewAllOrder(ArrayList<Order> orderArr) {
+		String output = String.format("%-10s %-15s %-15s %-20s %-10s\n", "ORDER ID", "NAME", "STALL", "FOOD", "PRICE");
 		for (Order order : orderArr) {
-			output += String.format("%-15d %-11s %-10s %-10s %-10d", order.getId(), order.getName(), order.getStall(), order.getFood(), order.getPrice());
+			output += String.format("%-10d %-15s %-15s %-20s %-10d\n", order.getId(), order.getName(), order.getStall(), order.getFood(), order.getPrice());
 		}
-		System.out.println(output);
+		return output;
 	}
 	
-	private void deleteOrder() {
-		int id = Helper.readInt("Enter order id to remove > ");
-		for (Order order : orderArr) {
-			if (order.getId() == id) {
-				orderArr.remove(order);
+	public static void deleteOrder(ArrayList<Order> orderArr, int id) {
+		for (int i = 0; i < orderArr.size(); i++) {
+			if (orderArr.get(i).getId() == id) {
+				orderArr.remove(i);
 			}
 		}
 	}
 	
-	private void changeOrder() {
-		
+	private Order inputOrder() {
+		Order or;
+		int id = Helper.readInt("Id > ");
+		String name = Helper.readString("Name > ");
+		String stall = Helper.readString("Stall Name > ");
+		String food = Helper.readString("Enter Food");
+		int price = Helper.readInt("Price > ");
+		or = new Order(id,name,stall,food,price);
+		return or;
 	}
 }
