@@ -51,6 +51,7 @@ public class C206_CaseStudyTest {
 		
 		stallArr= new ArrayList<Stall>();
 		
+		// customer order
 		order1 = new Order(1, "order1", "orderStall1", "orderFood1", 10);
 		order2 = new Order(2, "order2", "orderStall2", "orderFood2", 25);
 		order3 = new Order(3, "order3", "orderStall3", "orderFood3", 30);
@@ -169,6 +170,7 @@ public class C206_CaseStudyTest {
 		
 	@Test
 	public void doAddOrder() {
+		
 		// Check list is not null, so can add new order
 		assertNotNull("Test if there is valid Order arraylist to add to", orderArr);
 		
@@ -176,33 +178,79 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addOrder(orderArr, order1);
 		assertEquals("Test if that orderArr arraylist size is 1?", 1, orderArr.size());
 		
-		//The item just added is as same as the first item of the list
+		// The item just added is as same as the first item of the list
 		assertSame("Test that order is added same as 1st item of the list?", order1, orderArr.get(0));
 		
-		//Add another item. test The size of the list is 2?
+		// Add another item. Test The size of the list is 2
+		C206_CaseStudy.addOrder(orderArr, order2);
+		assertEquals("Test that order arraylist size is 2?", 2, orderArr.size());
+		
+		// Test that item added is from correct stall
+		assertEquals("Test if that order is from correct stall?", "orderStall2", orderArr.get(1).getStall());
+		
+		// Test order price matches
+		assertEquals("Test if that order price is displayed same?", 25, orderArr.get(1).getPrice());
+	}
+	
+	
+	@Test
+	public void doViewAllOrder() {
+		
+		// Check if arrayList is empty at the Beginning
+		assertNotNull("Test that arrayList is empty", orderArr);
+				
+		// Test that all the orders in check out is added/displayed
+		C206_CaseStudy.addOrder(orderArr, order1);
+		assertTrue(C206_CaseStudy.viewAllOrder(orderArr).contains("order1"));
+				
+		// Test that arrangement of the orders is displayed chronologically
+		assertSame("Test that order is added same as 1st order of the list?", 1, orderArr.get(0).getId());
+				
+		// Test the orders stall name matches
+		assertSame("Test if name of order's stall matches?", "orderStall1", orderArr.get(0).getStall());
+		
+		// Test the total price of an order is calculated correctly
+		assertEquals("Test if total price of this order is displayed correctly?", 10, orderArr.get(0).getPrice()); 
+	}	
+	
+	@Test
+	public void doDeleteOrder() {
+		
+		// Check if arrayList is empty at the Beginning
+		assertNotNull("Test that arrayList is empty", orderArr);
+		
+		// Test when delete, only 1 order is removed
+		C206_CaseStudy.addOrder(orderArr, order1);
+		C206_CaseStudy.addOrder(orderArr, order2);
+		C206_CaseStudy.deleteOrder(orderArr, 1);
+		assertNotEquals("Test order arraylist size is not 0?", 0, orderArr.size());
+		
+		
+		orderArr.clear();
+		// Test if order cancelled, no. of order decrease by 1
+		C206_CaseStudy.addOrder(orderArr, order1);
 		C206_CaseStudy.addOrder(orderArr, order2);
 		C206_CaseStudy.addOrder(orderArr, order3);
-		assertEquals("Test that order arraylist size is 3?", 3, orderArr.size());
-		assertSame("Test that order is added same as 3rd item of the list?", order3, orderArr.get(2));
-	}
-	
-	public static String retrieveAllOrder(ArrayList<Order> orderArr) {
-		String output = "";
-		for (int i = 0; i < orderArr.size(); i++) {
-
-			output += String.format("%-10s %-30s %-10s %-10s %-20s\n", orderArr.get(i).getId(), orderArr.get(i).getName(), orderArr.get(i).getStall(), orderArr.get(i).getFood(), orderArr.get(i).getPrice());
-		}
-		return output;
-	}
-	
-	
-	public static void doViewAllOrder(ArrayList<Order> orderArr) {
+		C206_CaseStudy.deleteOrder(orderArr, 3);
+		assertSame("Test if order deleted is correct?", 2, orderArr.size()); 
 		
-		String output = retrieveAllOrder(orderArr);
-		System.out.println(output);
-	}	
+		orderArr.clear();
+		// Test that when order is deleted, it is removed from list
+		C206_CaseStudy.addOrder(orderArr, order1);
+		C206_CaseStudy.addOrder(orderArr, order2);
+		C206_CaseStudy.deleteOrder(orderArr, 1);
+		assertSame("Test if that order arraylist size is 1?", 1, orderArr.size());
+		
+		orderArr.clear();
+		// Test that an order deleted is correct order customer selected
+		C206_CaseStudy.addOrder(orderArr, order1);
+		C206_CaseStudy.addOrder(orderArr, order2);
+		C206_CaseStudy.addOrder(orderArr, order3);
+		C206_CaseStudy.deleteOrder(orderArr, 3);
+		assertNotEquals("Test if order deleted is correct?", 2, orderArr.get(0).getId());  
+	}
 
-
+	
 	@Test
 	public void addFoodItemTest() {
 		foodItemArr.clear();

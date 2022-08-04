@@ -377,7 +377,7 @@ public class C206_CaseStudy {
 		String stall = Helper.readString("Stall Name > ");
 		String food = Helper.readString("Enter Food");
 		int price = Helper.readInt("Price > ");
-		or = new Order(id,name,stall,food,price);
+		or = new Order(id, name, stall, food, price);
 		return or;
 	}
 }
