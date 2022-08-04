@@ -99,7 +99,7 @@ public class C206_CaseStudy {
 						int id = Helper.readInt("ID > ");
 						addPromotion(foodItemArr, id);
 					}else if(choice5 == 2) {
-						viewPromotion();
+						viewPromotion(foodItemArr);
 					}else if(choice5 == 3) {
 						deletePromotion(foodItemArr);
 					}
@@ -326,7 +326,7 @@ public class C206_CaseStudy {
 			}//done
 		}
 	}
-	private void viewPromotion() {
+	public static void viewPromotion(ArrayList<FoodItem> foodItemArr) {
 		String output = "Promotion Item!\n";
 		for(FoodItem f:foodItemArr) {
 			if(f.isPromotion()) {

@@ -350,13 +350,21 @@ public class C206_CaseStudyTest {
 	//Promotion Left 
 	@Test
 	public void viewPromotion() {
+		//Test array is no empty
+		assertNotNull("Test foodItemArr is not empty",foodItemArr);
 		
 		//Test Food Item contains each instance of promotion
 		for(int i = 0 ; i < foodItemArr.size(); i++) {
 			assertNotNull(foodItemArr.get(i).getPromotionPrice());
 		}
+		
+		//Test Promotion added to foodItem
+		C206_CaseStudy.addFoodItem(foodItemArr,new FoodItem(1,"Chicken Rice",5));
+		assertEquals(3, foodItemArr.get(0).getPromotionPrice());
+		
+		
+		
 	}
-	
 
 	public void addPromotionTest() {
 		C206_CaseStudy.addFoodItem(foodItemArr,new FoodItem(1,"Chicken Rice",5));
