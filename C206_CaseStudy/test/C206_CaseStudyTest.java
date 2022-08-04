@@ -95,9 +95,9 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addStall(stallArr, stall9);
 		C206_CaseStudy.addStall(stallArr, stall10);
 		
-		//Test that ArrayList cannot contain more than 11 Stalls. //error
+		//Test that ArrayList cannot contain more than 10 Stalls. //error
 		C206_CaseStudy.addStall(stallArr, stall11);
-		assertNotEquals("Test if that Stall arraylist size is 10?",11, stallArr.size());
+		assertNotEquals("Test if that Stall arraylist size is 11?",11, stallArr.size());
 		
 	}
 	
