@@ -289,8 +289,15 @@ public class C206_CaseStudyTest {
 		//add new Request Order to arrayList
 		C206_CaseStudy.addRequestOrder(requestArr, new RequestOrder(1,"Order1", "orderFood1"));
 		
-		//Check requestOrder
+		//Test that requestOrder can be viewed in the list
 		assertTrue(C206_CaseStudy.viewAllRequestOrder(requestArr).contains("Order1"));	
+		
+		//Test thet name of order can be viewed
+		assertEquals("Order1", requestArr.get(0).getName());
+		
+		//Test the items in order can be viewed
+		assertEquals("orderFood1", requestArr.get(0).getOrder());
+		
 	}
 	
 	@Test
@@ -304,22 +311,39 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addRequestOrder(requestArr, reqOrder2);
 		C206_CaseStudy.addRequestOrder(requestArr, reqOrder3);
 		assertEquals("Test that requestArr arraylist size is 3?", 3, requestArr.size());
+		
+		// Test that order add is accurate
 		assertSame("Test that reqOrder is added to the list?", reqOrder3, requestArr.get(2));
+		
+		//Test that items in the order added is displayed
+		assertSame("order3", requestArr.get(2).getOrder());
+		
 	}
 	
 	@Test
 	public void deleteRequestOrderTest() {
 		requestArr.clear();
-		//check if arraylist is empty at the beginning
-		assertNotNull("Test if array is empty at start",requestArr);
+		
+		//check that nothing can be deleted if nothing inside the list
+		C206_CaseStudy.removeRequestOrder(requestArr, 1);
+		assertEquals(0, requestArr.size());
 		
 		//add a new request object to arraylist
 		C206_CaseStudy.addRequestOrder(requestArr, reqOrder1);
-		assertEquals("Test that requestArr arraylist size is 1?", 1, requestArr.size());
+		C206_CaseStudy.addRequestOrder(requestArr, reqOrder2);
+		C206_CaseStudy.addRequestOrder(requestArr, reqOrder3);
 		
+		//check if object can be deleted from list
+		C206_CaseStudy.removeRequestOrder(requestArr, 1);
+		assertEquals(2, requestArr.size());
 		
-		//check if arraylist contains new item that is added
-		assertEquals(requestArr.size(), 1);
+		//Check that other objects are not affected by the delete
+		assertNotNull(requestArr.get(1));
+		
+		//Test that the right item is deleted
+		assertEquals(reqOrder2, requestArr.get(0));
+		assertEquals(reqOrder3, requestArr.get(1));
+		
 	}
 	
 	
