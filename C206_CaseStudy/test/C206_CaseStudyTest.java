@@ -350,16 +350,14 @@ public class C206_CaseStudyTest {
 	//Promotion Left 
 	@Test
 	public void viewPromotion() {
-//		//check if arraylist is empty at the beginning
-//		assertNotNull("Test if array is empty at start",foodItemArr);
-//		
-//		for(FoodItem fi : foodItemArr) {
-//			if(fi.isPromotion()) {
-//				assertTrue(C206_CaseStudy.viewAllFoodItem(foodItemArr).contains((CharSequence) foodItemArr.get(0)));
-//			}
-//		}
+		
+		//Test Food Item contains each instance of promotion
+		for(int i = 0 ; i < foodItemArr.size(); i++) {
+			assertNotNull(foodItemArr.get(i).getPromotionPrice());
+		}
 	}
 	
+
 	public void addPromotionTest() {
 		C206_CaseStudy.addFoodItem(foodItemArr,new FoodItem(1,"Chicken Rice",5));
 		C206_CaseStudy.addFoodItem(foodItemArr,new FoodItem(2,"Chicken Noodle",7));
@@ -382,6 +380,17 @@ public class C206_CaseStudyTest {
 	}
 	
 	public void deletePromotion() {
+		foodItemArr.clear();
+		//check that nothing can be deleted if nothing inside the list
+		assertNotNull("Test foodItem Array & promotion is not empty", foodItemArr);
+		
+		//Test promotion is added
+		C206_CaseStudy.addPromotion(foodItemArr, 1);
+		assertEquals(1, foodItemArr.get(0).getPromotionPrice());
+		
+		//Delete
+		C206_CaseStudy.deletePromotion(foodItemArr);
+		assertEquals(0, foodItemArr.get(0).getId());
 		
 	}
 }

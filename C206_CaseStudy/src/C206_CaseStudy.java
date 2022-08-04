@@ -101,7 +101,7 @@ public class C206_CaseStudy {
 					}else if(choice5 == 2) {
 						viewPromotion();
 					}else if(choice5 == 3) {
-						deletePromotion();
+						deletePromotion(foodItemArr);
 					}
 				}
 			}
@@ -293,7 +293,7 @@ public class C206_CaseStudy {
 		}
 		return output;
 	}
-	private void removeRequestOrder(ArrayList<RequestOrder> requestArr, int id) {
+	public static void removeRequestOrder(ArrayList<RequestOrder> requestArr, int id) {
 		System.out.println(viewAllRequestOrder(requestArr));
 		for(int i = 0; i < requestArr.size(); i++) {
 			if(requestArr.get(i).getId() == id) {
@@ -336,8 +336,9 @@ public class C206_CaseStudy {
 			}
 		}
 		System.out.println(output);
+		//return null;
 	}
-	private void deletePromotion() {
+	public static void deletePromotion(ArrayList<FoodItem> foodItemArr) {
 		int id = Helper.readInt("Enter id > ");
 		for(FoodItem f: foodItemArr) {
 			if(f.isPromotion() && f.getId() == id) {
