@@ -275,7 +275,7 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addFoodItem(foodItemArr,fi);
 		
 		//check if arraylist contains new item that is added
-		C206_CaseStudy.deleteFoodItem(foodItemArr,fi);
+		C206_CaseStudy.deleteFoodItem(foodItemArr,1);
 		assertEquals(foodItemArr.size(),0);
 	}
 	
