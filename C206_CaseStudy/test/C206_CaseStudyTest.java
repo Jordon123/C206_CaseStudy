@@ -360,9 +360,10 @@ public class C206_CaseStudyTest {
 		
 		//Test Promotion added to foodItem
 		C206_CaseStudy.addFoodItem(foodItemArr,new FoodItem(1,"Chicken Rice",5));
-		assertEquals(3, foodItemArr.get(0).getPromotionPrice());
+		assertEquals(1, foodItemArr.get(0).getPromotionPrice());
 		
-		
+		//Test new Item is indeed to promotion
+		assertEquals("Chicken Rice", foodItemArr.get(0).getPromotionPrice());
 		
 	}
 
