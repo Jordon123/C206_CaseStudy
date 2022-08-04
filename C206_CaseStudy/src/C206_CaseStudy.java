@@ -96,7 +96,8 @@ public class C206_CaseStudy {
 					dailyPromMenu();
 					int choice5 = Helper.readInt("Choice > ");
 					if(choice5 == 1) {
-						addPromotion();
+						int id = Helper.readInt("ID > ");
+						addPromotion(foodItemArr, id);
 					}else if(choice5 == 2) {
 						viewPromotion();
 					}else if(choice5 == 3) {
@@ -309,17 +310,19 @@ public class C206_CaseStudy {
 		rq = new RequestOrder(id,name,order);
 		return rq;
 	}
-	private void addPromotion() {
-		int id = Helper.readInt("id > ");
+	public static void addPromotion(ArrayList<FoodItem> foodItemArr, int id) {
 		boolean promotion = true;
 		int promotionPrice;
-		String promotionDate = Helper.readString("Enter Promotion Date > ");
+		//String promotionDate = Helper.readString("Enter Promotion Date > ");
 		for( FoodItem f: foodItemArr ) {
 			if(f.getId() == id) {
 				promotionPrice = f.getPrice()-2;
+				if (promotionPrice > 3) {
+					promotionPrice = 3;
+				}
 				f.setPromotion(promotion);
 				f.setPromotionPrice(promotionPrice);
-				f.setPromotionDate(LocalDate.parse(promotionDate));
+				//f.setPromotionDate(LocalDate.parse(promotionDate));
 			}//done
 		}
 	}
