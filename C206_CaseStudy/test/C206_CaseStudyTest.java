@@ -336,8 +336,25 @@ public class C206_CaseStudyTest {
 //		}
 	}
 	
-	public void addPromotion() {
+	public void addPromotionTest() {
+		C206_CaseStudy.addFoodItem(foodItemArr,new FoodItem(1,"Chicken Rice",5));
+		C206_CaseStudy.addFoodItem(foodItemArr,new FoodItem(2,"Chicken Noodle",7));
+		C206_CaseStudy.addFoodItem(foodItemArr,new FoodItem(3,"Chicken Burger",4));
 		
+		//Test that promotion for id = 1 is added.
+		C206_CaseStudy.addPromotion(foodItemArr, 1);
+		assertEquals(3, foodItemArr.get(0).getPromotionPrice());
+		
+		//Test that other items are not affected
+		assertNotNull(foodItemArr.get(1).getPromotionPrice());
+		
+		//Test that promotion price cannot drop below $3
+		C206_CaseStudy.addPromotion(foodItemArr, 3);
+		assertEquals(3, foodItemArr.get(0).getPromotionPrice());
+		
+		//Test that promotion cannot be added twice to same item
+		C206_CaseStudy.addPromotion(foodItemArr, 3);
+		assertEquals(3, foodItemArr.get(0).getPromotionPrice());
 	}
 	
 	public void deletePromotion() {
