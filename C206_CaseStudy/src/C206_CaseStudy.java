@@ -182,7 +182,13 @@ public class C206_CaseStudy {
 		}
 		return output;
 	}
-	
+	private void viewAllStall() {
+		String output = String.format("%-10s %-15s %-15s %-15s %-15s %-10s\n", "Stall ID","Stall Name","Operation Date","Operation Time","Category","Operator Name");
+		for(Stall s: stallArr) {
+			output+=String.format("%-10d %-15s %-15s %-15s %-15s %-10s\n", s.getId(),s.getName(),s.getOperationDate().toString(),s.getOperationTime(),s.getCategory(),s.getOperator());
+		}
+		System.out.println(output);
+	}
 	private Stall inputStall() {
 		int id = Helper.readInt("Enter Stall ID > ");
 		String name = Helper.readString("Enter Stall Name > ");
