@@ -24,7 +24,7 @@ public class C206_CaseStudy {
 		RequestOrder reqOrder1 = new RequestOrder(1, "reqOrder1", "order1");
 		requestArr.add(reqOrder1);
 		FoodItem foodItem1 = new FoodItem(1,"Chicken Rice",3);
-		FoodItem foodItem2 = new FoodItem(1,"Fish & Chips",7);
+		FoodItem foodItem2 = new FoodItem(2,"Fish & Chips",7);
 		foodItemArr.add(foodItem1);
 		foodItem2.setPromotion(true);
 		foodItemArr.add(foodItem2);
@@ -99,9 +99,9 @@ public class C206_CaseStudy {
 						int id = Helper.readInt("ID > ");
 						addPromotion(foodItemArr, id);
 					}else if(choice5 == 2) {
-						viewPromotion(foodItemArr);
+						System.out.println(viewAllPromotion(foodItemArr));
 					}else if(choice5 == 3) {
-						deletePromotion(foodItemArr);
+						deletePromotion(foodItemArr,Helper.readInt("Enter promotion id to be removed"));
 					}
 				}
 			}
@@ -326,7 +326,7 @@ public class C206_CaseStudy {
 			}//done
 		}
 	}
-	public static void viewPromotion(ArrayList<FoodItem> foodItemArr) {
+	public static String viewAllPromotion(ArrayList<FoodItem> foodItemArr) {
 		String output = "Promotion Item!\n";
 		for(FoodItem f:foodItemArr) {
 			if(f.isPromotion()) {
@@ -335,19 +335,12 @@ public class C206_CaseStudy {
 				}
 			}
 		}
-		System.out.println(output);
-		//return null;
+		return output;
 	}
-	public static void deletePromotion(ArrayList<FoodItem> foodItemArr) {
-		int id = Helper.readInt("Enter id > ");
-		for(FoodItem f: foodItemArr) {
-			if(f.isPromotion() && f.getId() == id) {
-				char remove = Helper.readChar("Are you sure to remove? (Y/N) > ");
-				if(remove == 'Y') {
-					foodItemArr.remove(f);
-				}else {
-					System.out.println(f.getId());
-				}
+	public static void deletePromotion(ArrayList<FoodItem> foodItemArr, int id) {
+		for(int i = 0; i < foodItemArr.size(); i++) {
+			if(foodItemArr.get(i).isPromotion() && foodItemArr.get(i).getId() == id) {
+				foodItemArr.remove(i);
 			}
 		}
 	}
