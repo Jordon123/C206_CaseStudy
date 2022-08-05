@@ -34,9 +34,12 @@ public class C206_CaseStudyTest {
 	private RequestOrder reqOrder2;
 	private RequestOrder reqOrder3;
 	
+	FoodItem foodItem1;
+	FoodItem foodItem2;
 	@Before
 	public void setUp() throws Exception {
-		
+		foodItem2 = new FoodItem(2,"Fish & Chips",7);
+		foodItem1 = new FoodItem(1,"Chicken Rice",3);
 		stall1 = new Stall(1, "stall1", LocalDate.of(2020,10,3),"10am","Western", "Jordon");
 		stall2 = new Stall(2, "stall2", LocalDate.of(2020,11,13),"9am","Western", "Adi");
 		stall3 = new Stall(3, "stall3", LocalDate.of(2020,11,13),"8am","Asian", "Joel");
@@ -58,8 +61,8 @@ public class C206_CaseStudyTest {
 		
 		//Request Order
 		reqOrder1 = new RequestOrder(1, "reqOrder1", "order1");
-		reqOrder2 = new RequestOrder(1, "reqOrder2", "order2");
-		reqOrder3 = new RequestOrder(1, "reqOrder3", "order3");
+		reqOrder2 = new RequestOrder(2, "reqOrder2", "order2");
+		reqOrder3 = new RequestOrder(3, "reqOrder3", "order3");
 	}
 
 	@After
@@ -397,24 +400,21 @@ public class C206_CaseStudyTest {
 	
 	//Promotion Left 
 	@Test
-	public void viewPromotion() {
+	public void viewPromotionTest() {
 		//Test array is no empty
 		assertNotNull("Test foodItemArr is not empty",foodItemArr);
-		
 		//Test Food Item contains each instance of promotion
 		for(int i = 0 ; i < foodItemArr.size(); i++) {
 			assertNotNull(foodItemArr.get(i).getPromotionPrice());
 		}
-		
 		//Test Promotion added to foodItem
-		C206_CaseStudy.addFoodItem(foodItemArr,new FoodItem(1,"Chicken Rice",5));
-		assertEquals(1, foodItemArr.get(0).getPromotionPrice());
-		
+		C206_CaseStudy.addFoodItem(foodItemArr,foodItem1);
+		C206_CaseStudy.addPromotion(foodItemArr, 1);
+		assertTrue(foodItemArr.get(0).getPromotion());
 		//Test new Item is indeed to promotion
-		assertEquals("Chicken Rice", foodItemArr.get(0).getPromotionPrice());
-		
+		assertEquals("Chicken Rice", foodItemArr.get(0).getName());
 	}
-
+	@Test
 	public void addPromotionTest() {
 		C206_CaseStudy.addFoodItem(foodItemArr,new FoodItem(1,"Chicken Rice",5));
 		C206_CaseStudy.addFoodItem(foodItemArr,new FoodItem(2,"Chicken Noodle",7));
