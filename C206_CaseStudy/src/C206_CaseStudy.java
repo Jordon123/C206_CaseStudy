@@ -31,7 +31,7 @@ public class C206_CaseStudy {
 		int ans = 1;
 		while(ans != 4) {
 			mainMenu();
-			ans = Helper.readInt("enter>");
+			ans = Helper.readInt("Enter Option > ");
 			//canteen admin
 			if(ans == 1) {
 				canteenAdminMenu();
@@ -114,7 +114,7 @@ public class C206_CaseStudy {
 				} else if (choice6 == 2) {
 					System.out.println(viewAllOrder(orderArr));
 				} else if (choice6 == 3) {
-					deleteOrder(orderArr,Helper.readInt("Enter id to delete > "));
+					deleteOrder(orderArr,Helper.readInt("Enter ID to delete > "));					
 				}
 			}
 			else if(ans == 4) {
@@ -152,7 +152,7 @@ public class C206_CaseStudy {
 	private void customerMenu() {
 		System.out.println("1. Add Order");
 		System.out.println("2. View Order");
-		System.out.println("4. Remove Order");
+		System.out.println("3. Remove Order");
 	}
 	// Method to add stall. 
 	public static void addStall(ArrayList<Stall> stallArr, Stall stallNumber) {
@@ -370,11 +370,11 @@ public class C206_CaseStudy {
 	
 	private Order inputOrder() {
 		Order or;
-		int id = Helper.readInt("Id > ");
-		String name = Helper.readString("Name > ");
-		String stall = Helper.readString("Stall Name > ");
-		String food = Helper.readString("Enter Food");
-		int price = Helper.readInt("Price > ");
+		int id = Helper.readInt("Enter ID > ");
+		String name = Helper.readString("Enter Order Name > ");
+		String stall = Helper.readString("Enter Stall Name > ");
+		String food = Helper.readString("Enter Food Item> ");
+		int price = Helper.readInt("Enter Price > $");
 		or = new Order(id, name, stall, food, price);
 		return or;
 	}
