@@ -314,6 +314,7 @@ public class C206_CaseStudyTest {
 		
 		//check if arraylist contains new item that is added
 		assertTrue(C206_CaseStudy.viewAllFoodItem(foodItemArr).contains("Chicken Rice"));
+		assertEquals(foodItemArr.get(0).getPrice(),4);
 	}
 	@Test
 	public void deleteFoodItemTest() {
