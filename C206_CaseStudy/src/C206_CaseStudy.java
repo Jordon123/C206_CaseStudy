@@ -174,7 +174,6 @@ public class C206_CaseStudy {
 		// Method to view an existing stall
 	public static String viewStall(ArrayList<Stall> stallArr, int StallID) {
 		String output = "";
-		//String output = String.format("%-5s %-15s %-15s %-10s %-15s %-10s\n", "Stall ID","Stall Name","Operation Date","Operation Time","Category","Operator Name");
 		for(int i = 0; i < stallArr.size(); i++) {
 			if(stallArr.get(i).getId() == StallID) {
 				Stall s = stallArr.get(i);
@@ -195,13 +194,7 @@ public class C206_CaseStudy {
 				 category, operator);
 		return st;
 	}
-	private void viewAllStall() {
-		String output = String.format("%-10s %-15s %-15s %-15s %-15s %-10s\n", "Stall ID","Stall Name","Operation Date","Operation Time","Category","Operator Name");
-		for(Stall s: stallArr) {
-			output+=String.format("%-10d %-15s %-15s %-15s %-15s %-10s\n", s.getId(),s.getName(),s.getOperationDate().toString(),s.getOperationTime(),s.getCategory(),s.getOperator());
-		}
-		System.out.println(output);
-	}
+	
 	//------------------------------------------------------FoodItem----------------------------------------------------------------
 
 	// Method to add FoodItem. 
@@ -274,7 +267,6 @@ public class C206_CaseStudy {
 		System.out.println("3. remove daily promotion");
 	}
 	private void updateRequestStatus() {
-//		viewAllRequestOrder();
 		int id = Helper.readInt("Enter id to change status > ");
 		char status = Helper.readChar("Order Completed? (y/n)");
 		for(RequestOrder r: requestArr) {
