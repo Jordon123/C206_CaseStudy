@@ -438,6 +438,7 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addPromotion(foodItemArr, 3);
 		assertEquals(3, foodItemArr.get(0).getPromotionPrice());
 	}
+	
 	@Test
 	public void deletePromotion() {
 		foodItemArr.clear();
