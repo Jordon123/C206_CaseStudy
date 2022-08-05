@@ -435,19 +435,26 @@ public class C206_CaseStudyTest {
 		C206_CaseStudy.addPromotion(foodItemArr, 3);
 		assertEquals(3, foodItemArr.get(0).getPromotionPrice());
 	}
-	
+	@Test
 	public void deletePromotion() {
 		foodItemArr.clear();
 		//check that nothing can be deleted if nothing inside the list
 		assertNotNull("Test foodItem Array & promotion is not empty", foodItemArr);
 		
 		//Test promotion is added
+		//add two items
+		foodItemArr.add(foodItem1);
+		foodItemArr.add(foodItem2);
+		
+		//set one of the fooditems to promotion
 		C206_CaseStudy.addPromotion(foodItemArr, 1);
+		//check size is 2
+		assertEquals(2,foodItemArr.size());
 		assertEquals(1, foodItemArr.get(0).getPromotionPrice());
 		
-		//Delete
-		C206_CaseStudy.deletePromotion(foodItemArr);
-		assertEquals(0, foodItemArr.get(0).getId());
-		
+		//Delete promotion food item
+		C206_CaseStudy.deletePromotion(foodItemArr,1);
+		//check size is equal to 1 after removing promotion item
+		assertEquals(foodItemArr.size(),1);
 	}
 }
