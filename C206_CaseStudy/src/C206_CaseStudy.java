@@ -342,7 +342,12 @@ public class C206_CaseStudy {
 		int id = Helper.readInt("Enter id > ");
 		for(FoodItem f: foodItemArr) {
 			if(f.isPromotion() && f.getId() == id) {
-				foodItemArr.remove(f);
+				char remove = Helper.readChar("Are you sure to remove? (Y/N) > ");
+				if(remove == 'Y') {
+					foodItemArr.remove(f);
+				}else {
+					System.out.println(f.getId());
+				}
 			}
 		}
 	}
