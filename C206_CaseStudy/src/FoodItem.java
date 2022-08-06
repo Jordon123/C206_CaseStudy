@@ -23,6 +23,9 @@ public class FoodItem {
 	public void setPromotion(boolean promotion) {
 		this.promotion = promotion;
 	}
+	public boolean getPromotion() {
+		return promotion;
+	}
 	public int getPromotionPrice() {
 		return promotionPrice;
 	}
