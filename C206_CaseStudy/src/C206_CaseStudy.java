@@ -31,7 +31,7 @@ public class C206_CaseStudy {
 		int ans = 1;
 		while(ans != 4) {
 			mainMenu();
-			ans = Helper.readInt("Enter Option > ");
+			ans = Helper.readInt("enter>");
 			//canteen admin
 			if(ans == 1) {
 				canteenAdminMenu();
@@ -48,7 +48,10 @@ public class C206_CaseStudy {
 					else if(choice1 == 2) {
 						viewAllStall();
 					}
-					else if(choice1 == 3) {
+					else if (choice1 == 3) {
+						System.out.println(viewStall(stallArr,Helper.readInt("Enter Stall ID > ")));
+					}
+					else if(choice1 == 4) {
 						viewAllStall();
 						int stallNumber = Helper.readInt("Enter Stall ID to delete: ");  
 						deleteStall(stallArr, stallNumber);
@@ -99,7 +102,7 @@ public class C206_CaseStudy {
 						int id = Helper.readInt("ID > ");
 						addPromotion(foodItemArr, id);
 					}else if(choice5 == 2) {
-						viewAllPromotion(foodItemArr);
+						System.out.println(viewAllPromotion(foodItemArr));
 					}else if(choice5 == 3) {
 						deletePromotion(foodItemArr,Helper.readInt("Enter promotion id to be removed"));
 					}
@@ -114,7 +117,7 @@ public class C206_CaseStudy {
 				} else if (choice6 == 2) {
 					System.out.println(viewAllOrder(orderArr));
 				} else if (choice6 == 3) {
-					deleteOrder(orderArr,Helper.readInt("Enter ID to delete > "));					
+					deleteOrder(orderArr,Helper.readInt("Enter id to delete > "));
 				}
 			}
 			else if(ans == 4) {
@@ -141,8 +144,9 @@ public class C206_CaseStudy {
 	}
 	private void stallMenu() {
 		System.out.println("1. Add Stall");
-		System.out.println("2. View Stall");
-		System.out.println("3. Remove Stall");
+		System.out.println("2. View All Stall");
+		System.out.println("3. View Stall");
+		System.out.println("4. Remove Stall");
 	}
 	private void foodItemMenu() {
 		System.out.println("1. Add Food Item");
@@ -152,7 +156,7 @@ public class C206_CaseStudy {
 	private void customerMenu() {
 		System.out.println("1. Add Order");
 		System.out.println("2. View Order");
-		System.out.println("3. Remove Order");
+		System.out.println("4. Remove Order");
 	}
 	// Method to add stall. 
 	public static void addStall(ArrayList<Stall> stallArr, Stall stallNumber) {
@@ -173,22 +177,17 @@ public class C206_CaseStudy {
 	}
 		// Method to view an existing stall
 	public static String viewStall(ArrayList<Stall> stallArr, int StallID) {
-		String output = "";
+		String output = String.format("%-10s %-15s %-15s %-15s %-15s %-10s\n", "Stall ID","Stall Name","Operation Date","Operation Time","Category","Operator Name");
+		//String output = String.format("%-5s %-15s %-15s %-10s %-15s %-10s\n", "Stall ID","Stall Name","Operation Date","Operation Time","Category","Operator Name");
 		for(int i = 0; i < stallArr.size(); i++) {
 			if(stallArr.get(i).getId() == StallID) {
 				Stall s = stallArr.get(i);
-				output = String.format("%-5d %-15s %-15s %-10s %-15s %-10s\n", s.getId(),s.getName(),s.getOperationDate().toString(),s.getOperationTime(),s.getCategory(),s.getOperator());
+				output += String.format("%-10s %-15s %-15s %-15s %-15s %-10s\n", s.getId(),s.getName(),s.getOperationDate().toString(),s.getOperationTime(),s.getCategory(),s.getOperator());
 			}
 		}
 		return output;
 	}
-	private void viewAllStall() {
-		String output = String.format("%-10s %-15s %-15s %-15s %-15s %-10s\n", "Stall ID","Stall Name","Operation Date","Operation Time","Category","Operator Name");
-		for(Stall s: stallArr) {
-			output+=String.format("%-10d %-15s %-15s %-15s %-15s %-10s\n", s.getId(),s.getName(),s.getOperationDate().toString(),s.getOperationTime(),s.getCategory(),s.getOperator());
-		}
-		System.out.println(output);
-	}
+	
 	private Stall inputStall() {
 		int id = Helper.readInt("Enter Stall ID > ");
 		String name = Helper.readString("Enter Stall Name > ");
@@ -200,7 +199,13 @@ public class C206_CaseStudy {
 				 category, operator);
 		return st;
 	}
-	
+	private void viewAllStall() {
+		String output = String.format("%-10s %-15s %-15s %-15s %-15s %-10s\n", "Stall ID","Stall Name","Operation Date","Operation Time","Category","Operator Name");
+		for(Stall s: stallArr) {
+			output+=String.format("%-10d %-15s %-15s %-15s %-15s %-10s\n", s.getId(),s.getName(),s.getOperationDate().toString(),s.getOperationTime(),s.getCategory(),s.getOperator());
+		}
+		System.out.println(output);
+	}
 	//------------------------------------------------------FoodItem----------------------------------------------------------------
 
 	// Method to add FoodItem. 
@@ -273,6 +278,7 @@ public class C206_CaseStudy {
 		System.out.println("3. remove daily promotion");
 	}
 	private void updateRequestStatus() {
+//		viewAllRequestOrder();
 		int id = Helper.readInt("Enter id to change status > ");
 		char status = Helper.readChar("Order Completed? (y/n)");
 		for(RequestOrder r: requestArr) {
@@ -324,13 +330,16 @@ public class C206_CaseStudy {
 			}//done
 		}
 	}
-	public static void viewAllPromotion(ArrayList<FoodItem> foodItemArr) {
-		String output = String.format("%-21s %-18s %s\n", "Promotion Item Date!", "Name","Price");
-		for(FoodItem f : foodItemArr) {
-			f.getPromotionDate();
-			output+=String.format("%-21s %-20s %s\n", LocalDate.now(), f.getName(),"$"+f.getPrice());
+	public static String viewAllPromotion(ArrayList<FoodItem> foodItemArr) {
+		String output = "Promotion Item!\n";
+		for(FoodItem f:foodItemArr) {
+			if(f.isPromotion()) {
+				if(f.getPromotionDate().isAfter(LocalDate.now()) && f.getPromotionDate().isBefore(f.getPromotionDate().plusDays(14))) {
+					output=String.format("%-5d %-15s %-10d\n", f.getId(),f.getName(),f.getPrice());
+				}
+			}
 		}
-		System.out.println(output);
+		return output;
 	}
 	public static void deletePromotion(ArrayList<FoodItem> foodItemArr, int id) {
 		for(int i = 0; i < foodItemArr.size(); i++) {
@@ -365,11 +374,11 @@ public class C206_CaseStudy {
 	
 	private Order inputOrder() {
 		Order or;
-		int id = Helper.readInt("Enter ID > ");
-		String name = Helper.readString("Enter Order Name > ");
-		String stall = Helper.readString("Enter Stall Name > ");
-		String food = Helper.readString("Enter Food Item> ");
-		int price = Helper.readInt("Enter Price > $");
+		int id = Helper.readInt("Id > ");
+		String name = Helper.readString("Name > ");
+		String stall = Helper.readString("Stall Name > ");
+		String food = Helper.readString("Enter Food");
+		int price = Helper.readInt("Price > ");
 		or = new Order(id, name, stall, food, price);
 		return or;
 	}
