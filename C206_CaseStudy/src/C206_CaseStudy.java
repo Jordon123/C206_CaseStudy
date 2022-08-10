@@ -99,7 +99,7 @@ public class C206_CaseStudy {
 						int id = Helper.readInt("ID > ");
 						addPromotion(foodItemArr, id);
 					}else if(choice5 == 2) {
-						System.out.println(viewAllPromotion(foodItemArr));
+						viewAllPromotion(foodItemArr);
 					}else if(choice5 == 3) {
 						deletePromotion(foodItemArr,Helper.readInt("Enter promotion id to be removed"));
 					}
@@ -324,16 +324,13 @@ public class C206_CaseStudy {
 			}//done
 		}
 	}
-	public static String viewAllPromotion(ArrayList<FoodItem> foodItemArr) {
-		String output = "Promotion Item!\n";
-		for(FoodItem f:foodItemArr) {
-			if(f.isPromotion()) {
-				if(f.getPromotionDate().isAfter(LocalDate.now()) && f.getPromotionDate().isBefore(f.getPromotionDate().plusDays(14))) {
-					output=String.format("%-5d %-15s %-10d\n", f.getId(),f.getName(),f.getPrice());
-				}
-			}
+	public static void viewAllPromotion(ArrayList<FoodItem> foodItemArr) {
+		String output = String.format("%-21s %-18s %s\n", "Promotion Item Date!", "Name","Price");
+		for(FoodItem f : foodItemArr) {
+			f.getPromotionDate();
+			output+=String.format("%-21s %-20s %s\n", LocalDate.now(), f.getName(),"$"+f.getPrice());
 		}
-		return output;
+		System.out.println(output);
 	}
 	public static void deletePromotion(ArrayList<FoodItem> foodItemArr, int id) {
 		for(int i = 0; i < foodItemArr.size(); i++) {
