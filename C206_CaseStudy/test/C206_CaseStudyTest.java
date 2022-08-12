@@ -133,41 +133,41 @@ public class C206_CaseStudyTest {
 	}
 	
 		@Test
-	public void viewStallTest() {
-		
-		//test that nothing can be viewed if there are no stalls in ArrayList.//error condition
-		String checkStalls = C206_CaseStudy.viewStall(stallArr, 1);
-		String testOutput2 = "";
-		assertEquals(testOutput2, checkStalls);
+		public void viewStallTest() {
+			
+			//test that nothing can be viewed if there are no stalls in ArrayList.//error condition
+			stallArr.clear();
+			String checkStalls = C206_CaseStudy.viewStall(stallArr, 1);
+			String testOutput2 = "";
+			assertEquals(testOutput2, checkStalls);
 
-		C206_CaseStudy.addStall(stallArr, stall1);
-		
-		//test if the expected output string same as the stall in the arrayList //normal
-		String testOutput = "";
-		testOutput = String.format("%-5d %-15s %-15s %-10s %-15s %-10s\n",1, "stall1", LocalDate.of(2020,10,3),"10am","Western", "Jordon");			
-		assertEquals(testOutput, C206_CaseStudy.viewStall(stallArr, 1));
-		
-		//test that only 1 item will be displayed when viewStall is used //normal
-		String checkNumStalls = C206_CaseStudy.viewStall(stallArr, 1);
-		int testOutputNum = 1;
-		assertEquals(checkNumStalls.lines().count(), 1);
-		
-		C206_CaseStudy.addStall(stallArr, stall2);
-		C206_CaseStudy.addStall(stallArr, stall3);
-		C206_CaseStudy.addStall(stallArr, stall4);
-		C206_CaseStudy.addStall(stallArr, stall5);
-		C206_CaseStudy.addStall(stallArr, stall6);
-		C206_CaseStudy.addStall(stallArr, stall7);
-		C206_CaseStudy.addStall(stallArr, stall8);
-		C206_CaseStudy.addStall(stallArr, stall9);
-		C206_CaseStudy.addStall(stallArr, stall10);
-		
-		//test that user cannot view the 11th stall outside the max range(10) //boundary
-		C206_CaseStudy.addStall(stallArr, stall11);
-		String testOutput3 = "";
-		assertEquals(testOutput3, C206_CaseStudy.viewStall(stallArr, 11));
-		
-	}
+			C206_CaseStudy.addStall(stallArr, stall1);
+			
+			//test if the expected output string same as the stall in the arrayList //normal
+			String testOutput = "";
+			testOutput = String.format("%-10s %-15s %-15s %-15s %-15s %-10s\n",1, "stall1", LocalDate.of(2020,10,3),"10am","Western", "Jordon");			
+			assertEquals(testOutput,C206_CaseStudy.viewStall(stallArr, 1));
+			
+			//test that only 1 item will be displayed when viewStall is used //normal
+			String checkNumStalls = C206_CaseStudy.viewStall(stallArr, 1);
+			int testOutputNum = 1;
+			assertEquals(checkNumStalls.lines().count(), 1);
+			
+			C206_CaseStudy.addStall(stallArr, stall2);
+			C206_CaseStudy.addStall(stallArr, stall3);
+			C206_CaseStudy.addStall(stallArr, stall4);
+			C206_CaseStudy.addStall(stallArr, stall5);
+			C206_CaseStudy.addStall(stallArr, stall6);
+			C206_CaseStudy.addStall(stallArr, stall7);
+			C206_CaseStudy.addStall(stallArr, stall8);
+			C206_CaseStudy.addStall(stallArr, stall9);
+			C206_CaseStudy.addStall(stallArr, stall10);
+			
+			//test that user cannot view the 11th stall outside the max range(10) //boundary
+			C206_CaseStudy.addStall(stallArr, stall11);
+			String testOutput3 = "";
+			assertEquals(testOutput3, C206_CaseStudy.viewStall(stallArr, 11));
+		}
 	
 	//-------------------------------------------------------customer test--------------------------------------------------------
 		
